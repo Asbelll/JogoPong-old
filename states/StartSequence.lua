@@ -20,6 +20,8 @@ function StartSequence:close()
 end
 
 function StartSequence:enable()
+	button = loveframes.Create("button")
+	button:SetSize(100, 100):SetText("Asbels2Razz"):SetPos(330, 35)
 end
 
 function StartSequence:disable()
