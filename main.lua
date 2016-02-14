@@ -2,7 +2,7 @@
 require("states/StartSequence")
 
 function love.load()
-	-- Verifica os argumentos de inicialização escolher o modo de execução
+	-- Verifica os argumentos de inicialização para escolher o modo de execução
 	debugMode = false
 
 	for l = 1, #arg do
