@@ -12,7 +12,7 @@ local config = {
 
 	always_use = true,
 
-	enable_console = true,
+	enable_console = false,
 	console_key = '`',
 	console_override_print = true,
 	console_height = 0.33,
@@ -22,9 +22,9 @@ local config = {
 	enable_remote = true,
 	font = "whitrabt.ttf",
 
-	enable_watcher = true,
+	enable_watcher = false,
 	watcher_interval = 1.0,
-	watcher_onchanged = "reload()",
+	watcher_onchanged = "reload(true)",
 	watcher_patterns = {"lua$"},
 	enable_physics = false,
 	physics_show = false,
@@ -124,33 +124,33 @@ local function cupid_load(args)
 		})
 
 
-		local function load_modules(what)
+		function cupid_load_modules(what)
 			local mod = mods[what]()
 			if ( mod.init ) then mod:init() end
 			modules[what] = mod
 		end
 
 		if config.enable_console then
-			load_modules("console")
+			cupid_load_modules("console")
 		end
 
 		if config.enable_watcher then
-			load_modules("watcher")
+			cupid_load_modules("watcher")
 		end
 
 		if config.enable_remote then
-			load_modules("remote")
+			cupid_load_modules("remote")
 		end
 
 		if config.enable_physics then
-			load_modules("physics")
+			cupid_load_modules("physics")
 		end
 
 		if config.enable_temporal then
-			load_modules("temporal")
+			cupid_load_modules("temporal")
 		end
 
-		load_modules("error")
+		cupid_load_modules("error")
 	else
 		love.load = nil
 	end
