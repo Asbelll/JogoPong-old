@@ -120,6 +120,7 @@ end
 -- draws all the graphs in your list
 function fpsGraph.drawGraphs(graphs)
 	-- set default font
+	currentFont = love.graphics.getFont()
 	love.graphics.setFont(fpsGraph.fpsFont)
 
 	-- loop through all of the graphs
@@ -142,6 +143,8 @@ function fpsGraph.drawGraphs(graphs)
 		love.graphics.setColor(255, 255, 255, 255)
 		love.graphics.print(v.label, v.x, v.height+v.y-8)
 	end
+	love.graphics.setFont(currentFont)
+
 end
 
 return fpsGraph
