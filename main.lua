@@ -15,7 +15,11 @@ function love.load()
 
 			-- Inicia modulos de debug do Cupid
 			cupid_load_modules("console")
-			cupid_load_modules("watcher")
+
+			-- Informações no console
+			print("Modo debug LIGADO")
+			print('O watcher se encontra desativado no momento, para ativá-lo entre com o comando cupid_load_modules("watcher")')
+			print("-----------------")
 			debugMode = true
 		end
 	end
