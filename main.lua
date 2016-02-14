@@ -3,7 +3,6 @@ require("states/StartSequence")
 
 function love.load()
 	-- Verifica os argumentos de inicialização para escolher o modo de execução
-
 	for l = 1, #arg do
 		if (arg[l] == "-KelverMode" and debugMode == false) then
 			-- Inicia no modo debug caso solicitado
@@ -14,13 +13,20 @@ function love.load()
 			fpsInfo = fpsGraph.createGraph()
 			memoryInfo = fpsGraph.createGraph(0, 30)
 
+			-- Inicia modulos de debug do Cupid
 			cupid_load_modules("console")
 			cupid_load_modules("watcher")
 			debugMode = true
 		end
 	end
+	-- Inicia o loveframes
+	loveframes = require("lib.LoveFrames")
+
 	-- Adiciona os game states para uso futuro.
 	addState(StartSequence, "StartSequence")
+
+	-- Game state inicial
+	enableState("StartSequence")
 end
 
 function love.update(dt)
@@ -32,9 +38,12 @@ function love.update(dt)
 	end
 
 	lovelyMoon.update(dt)
+	loveframes.update(dt)
 end
 
 function love.draw()
+	lovelyMoon.draw()
+
 	if (debugMode) then
 		love.graphics.setColor(255, 0, 0, 255)
 		fpsGraph.drawGraphs({fpsInfo})
@@ -42,21 +51,30 @@ function love.draw()
 		fpsGraph.drawGraphs({memoryInfo})
 	end
 
-	lovelyMoon.draw()
+	loveframes.draw()
 end
 
 function love.keypressed(key, unicode)
 	lovelyMoon.keypressed(key, unicode)
+	loveframes.keypressed(key, unicode)
+
 end
 
 function love.keyreleased(key, unicode)
 	lovelyMoon.keyreleased(key, unicode)
+	loveframes.keyreleased(key)
 end
 
 function love.mousepressed(x, y, button)
 	lovelyMoon.mousepressed(x, y, button)
+	loveframes.mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
 	lovelyMoon.mousereleased(x, y, button)
+	loveframes.mousereleased(x, y, button)
+end
+
+function love.textinput(text)
+	loveframes.textinput(text)
 end
