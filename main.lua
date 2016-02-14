@@ -3,14 +3,19 @@ require("states/StartSequence")
 
 function love.load()
 	-- Verifica os argumentos de inicialização para escolher o modo de execução
-	debugMode = false
 
 	for l = 1, #arg do
-		if (arg[l] == "-KelverMode") then
-			-- Inicia no modo debug
-			require("lib/cupid")
+		if (arg[l] == "-KelverMode" and debugMode == false) then
+			-- Inicia no modo debug caso solicitado
 			lovebird = require("lib/lovebird")
+			fpsGraph = require "lib/FPSGraph"
 
+			-- Cria gráficos informativos
+			fpsInfo = fpsGraph.createGraph()
+			memoryInfo = fpsGraph.createGraph(0, 30)
+
+			cupid_load_modules("console")
+			cupid_load_modules("watcher")
 			debugMode = true
 		end
 	end
@@ -21,12 +26,22 @@ end
 function love.update(dt)
 	if (debugMode) then
 		lovebird.update(dt)
+
+		fpsGraph.updateFPS(fpsInfo, dt)
+		fpsGraph.updateMem(memoryInfo, dt)
 	end
 
 	lovelyMoon.update(dt)
 end
 
 function love.draw()
+	if (debugMode) then
+		love.graphics.setColor(255, 0, 0, 255)
+		fpsGraph.drawGraphs({fpsInfo})
+		love.graphics.setColor(10, 200, 255, 255)
+		fpsGraph.drawGraphs({memoryInfo})
+	end
+
 	lovelyMoon.draw()
 end
 
