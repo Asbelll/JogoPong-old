@@ -1,3 +1,7 @@
+-- Importa algumas das bibliotecas necessárias
+require("lib/stateManager")
+require("lib/lovelyMoon")
+
 function love.conf(t)
-	io.stdout:setvbuf("no")
+
 end
