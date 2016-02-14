@@ -26,7 +26,6 @@ function StartSequence:disable()
 end
 
 function StartSequence:update(dt)
-	xucrute = xucrute + dt
 end
 
 function StartSequence:draw()
