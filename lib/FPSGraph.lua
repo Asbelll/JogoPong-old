@@ -139,6 +139,7 @@ function fpsGraph.drawGraphs(graphs)
 		end
 
 		-- print the label of the graph
+		love.graphics.setColor(255, 255, 255, 255)
 		love.graphics.print(v.label, v.x, v.height+v.y-8)
 	end
 end
