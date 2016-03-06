@@ -3,6 +3,8 @@
 -- Criação da classe
 class.DebugMode()
 
+local comandosAtivos = {"space", "left", "right"}
+
 function DebugMode:load()
 	-- Importa bibliotecas de debug
 	lovebird = require("lib/lovebird")
@@ -44,10 +46,10 @@ function DebugMode:draw()
 	fpsGraph.drawGraphs({memoryInfo})
 end
 
-function DebugMode:keypressed(key, unicode)
+function DebugMode:keypressed(key, isrepeat)
 end
 
-function DebugMode:keyreleased(key, unicode)
+function DebugMode:keyreleased(key)
 end
 
 function DebugMode:mousepressed(x, y, button)
