@@ -13,7 +13,7 @@ function love.load()
 			fpsInfo = fpsGraph.createGraph()
 			memoryInfo = fpsGraph.createGraph(0, 30)
 
-			-- Inicia modulos de debug do Cupid
+			-- Inicia módulos de debug do Cupid
 			cupid_load_modules("console")
 
 			-- Informações no console
