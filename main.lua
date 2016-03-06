@@ -33,13 +33,13 @@ function love.draw()
 end
 
 function love.keypressed(key, isrepeat)
-	InputVerify.keypressed(key, isrepeat)
+	InputVerify:keypressed(key, isrepeat)
 	loveframes.keypressed(key, isrepeat)
 
 end
 
 function love.keyreleased(key)
-	InputVerify.keyreleased(key)
+	InputVerify:keyreleased(key)
 	loveframes.keyreleased(key)
 end
 
