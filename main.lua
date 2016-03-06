@@ -1,26 +1,14 @@
--- Importa todos os game states
+-- Importa os game states.
 require("states/StartSequence")
 
 function love.load()
-	-- Verifica os argumentos de inicialização para escolher o modo de execução
+	-- Verifica os argumentos de inicialização para escolher o modo de execução.
 	for l = 1, #arg do
-		if (arg[l] == "-KelverMode" and debugMode == false) then
-			-- Inicia no modo debug caso solicitado
-			lovebird = require("lib/lovebird")
-			fpsGraph = require "lib/FPSGraph"
-
-			-- Cria gráficos informativos
-			fpsInfo = fpsGraph.createGraph()
-			memoryInfo = fpsGraph.createGraph(0, 30)
-
-			-- Inicia módulos de debug do Cupid
-			cupid_load_modules("console")
-
-			-- Informações no console
-			print("Modo debug LIGADO")
-			print('O watcher se encontra desativado no momento, para ativá-lo entre com o comando cupid_load_modules("watcher")')
-			print("-----------------")
-			debugMode = true
+		if (arg[l] == "-KelverMode") then
+			-- Adiciona e ativa o DebugMode.
+			require("states/DebugMode")
+			addState(DebugMode, "DebugMode")
+			enableState("DebugMode")
 		end
 	end
 	-- Inicia o loveframes
@@ -34,27 +22,12 @@ function love.load()
 end
 
 function love.update(dt)
-	if (debugMode) then
-		lovebird.update(dt)
-
-		fpsGraph.updateFPS(fpsInfo, dt)
-		fpsGraph.updateMem(memoryInfo, dt)
-	end
-
 	lovelyMoon.update(dt)
 	loveframes.update(dt)
 end
 
 function love.draw()
 	lovelyMoon.draw()
-
-	if (debugMode) then
-		love.graphics.setColor(255, 0, 0, 255)
-		fpsGraph.drawGraphs({fpsInfo})
-		love.graphics.setColor(10, 200, 255, 255)
-		fpsGraph.drawGraphs({memoryInfo})
-	end
-
 	loveframes.draw()
 end
 
