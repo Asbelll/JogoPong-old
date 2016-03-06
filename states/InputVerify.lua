@@ -25,12 +25,12 @@ end
 
 function InputVerify:keypressed(key, isrepeat)
 	if commandList[key] ~= nil then
-		lovelyMoon.buttonpressed(commandList[key])
+		lovelyMoon.keypressed(commandList[key])
 	end
 end
 
 function InputVerify:keyreleased(key)
 	if commandList[key] ~= nil then
-		lovelyMoon.buttonreleased(commandList[key])
+		lovelyMoon.keyreleased(commandList[key])
 	end
 end
