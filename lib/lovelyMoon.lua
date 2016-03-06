@@ -43,22 +43,6 @@ function lovelyMoon.keyreleased(key)
    end
 end
 
-function lovelyMoon.buttonpressed(key, isrepeat)
-   for index, state in pairs(_slotState.states) do
-      if state and state._enabled and state.buttonpressed then
-         state:buttonpressed(key, isrepeat)
-      end
-   end
-end
-
-function lovelyMoon.buttonreleased(key)
-   for index, state in pairs(_slotState.states) do
-      if state and state._enabled and state.buttonreleased then
-         state:buttonreleased(key)
-      end
-   end
-end
-
 function lovelyMoon.mousepressed(x, y, button)
    for index, state in pairs(_slotState.states) do
       if state and state._enabled and state.mousepressed then
