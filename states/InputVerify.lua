@@ -6,7 +6,7 @@ commandList = {lshift = "poo", g = "ness", up = "paula", t = "jeff"}
 
 function InputVerify:keypressed(key, isrepeat)
 	if commandList[key] ~= nil then
-		lovelyMoon.keypressed(commandList[key])
+		lovelyMoon.keypressed(commandList[key], isrepeat)
 	end
 end
 
