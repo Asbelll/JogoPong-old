@@ -31,14 +31,14 @@ function love.draw()
 	loveframes.draw()
 end
 
-function love.keypressed(key, unicode)
-	lovelyMoon.keypressed(key, unicode)
-	loveframes.keypressed(key, unicode)
+function love.keypressed(key, isrepeat)
+	lovelyMoon.keypressed(key, isrepeat)
+	loveframes.keypressed(key, isrepeat)
 
 end
 
-function love.keyreleased(key, unicode)
-	lovelyMoon.keyreleased(key, unicode)
+function love.keyreleased(key)
+	lovelyMoon.keyreleased(key)
 	loveframes.keyreleased(key)
 end
 
