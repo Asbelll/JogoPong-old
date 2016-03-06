@@ -1,17 +1,7 @@
 -- <Descrição do state>
 
 -- Criação da tabela
-StartSequence = {}
-
-function StartSequence:new()
-   local gs = {}
-
-   gs = setmetatable(gs, self)
-   self.__index = self
-   _gs = gs
-
-   return gs
-end
+class.StartSequence()
 
 function StartSequence:load()
 end
