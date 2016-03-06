@@ -27,18 +27,34 @@ function lovelyMoon.draw()
    end
 end
 
-function lovelyMoon.keypressed(key, unicode)
+function lovelyMoon.keypressed(key, isrepeat)
    for index, state in pairs(_slotState.states) do
       if state and state._enabled and state.keypressed then
-         state:keypressed(key, unicode)
+         state:keypressed(key, isrepeat)
       end
    end
 end
 
-function lovelyMoon.keyreleased(key, unicode)
+function lovelyMoon.keyreleased(key)
    for index, state in pairs(_slotState.states) do
       if state and state._enabled and state.keyreleased then
-         state:keyreleased(key, unicode)
+         state:keyreleased(key)
+      end
+   end
+end
+
+function lovelyMoon.buttonpressed(key, isrepeat)
+   for index, state in pairs(_slotState.states) do
+      if state and state._enabled and state.buttonpressed then
+         state:buttonpressed(key, isrepeat)
+      end
+   end
+end
+
+function lovelyMoon.buttonreleased(key)
+   for index, state in pairs(_slotState.states) do
+      if state and state._enabled and state.buttonreleased then
+         state:buttonreleased(key)
       end
    end
 end
