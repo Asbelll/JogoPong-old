@@ -1,5 +1,6 @@
 -- Importa os game states.
 require("states/StartSequence")
+require("states/InputVerify")
 
 function love.load()
 	-- Verifica os argumentos de inicialização para escolher o modo de execução.
@@ -16,9 +17,11 @@ function love.load()
 
 	-- Adiciona os game states para uso futuro.
 	addState(StartSequence, "StartSequence")
+	addState(InputVerify, "InputVerify")
 
 	-- Game state inicial
 	enableState("StartSequence")
+	enableState("InputVerify")
 end
 
 function love.update(dt)
