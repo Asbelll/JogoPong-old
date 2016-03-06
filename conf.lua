@@ -1,7 +1,10 @@
 -- Importa algumas das bibliotecas necessárias
+require 'lib/pl'
 require("lib/stateManager")
 require("lib/lovelyMoon")
 require("lib/cupid")
+
+-- Definições padrões de inicialização
 debugMode = false
 
 function love.conf(t)
