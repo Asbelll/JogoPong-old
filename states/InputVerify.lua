@@ -34,15 +34,3 @@ function InputVerify:keyreleased(key)
 		lovelyMoon.buttonreleased(commandList[key])
 	end
 end
-
-function InputVerify:mousepressed(x, y, button)
-	if commandList[key] ~= nil then
-		lovelyMoon.buttonpressed(commandList[key])
-	end
-end
-
-function InputVerify:mousereleased(x, y, button)
-	if commandList[key] ~= nil then
-		lovelyMoon.buttonreleased(commandList[key])
-	end
-end
