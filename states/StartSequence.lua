@@ -25,10 +25,10 @@ function StartSequence:draw()
 	love.graphics.print("Compre a DLC 'Partiu ser op' para adquirir pontos de exclamação em seu jogo", 200, 350)
 end
 
-function StartSequence:keypressed(key, isrepeat)
+function StartSequence:buttonpressed(key, isrepeat)
 end
 
-function StartSequence:keyreleased(key)
+function StartSequence:buttonreleased(key)
 end
 
 function StartSequence:mousepressed(x, y, button)
