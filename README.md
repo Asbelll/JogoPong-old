@@ -7,3 +7,4 @@ Libraries used:
 * [FPSGraph](https://github.com/icrawler/FPSGraph)
 * [LoveFrames](https://github.com/KennyShields/LoveFrames)
 * [Penlight] (https://stevedonovan.github.io/Penlight/api/index.html)
+* [Binser] (https://github.com/bakpakin/binser)
