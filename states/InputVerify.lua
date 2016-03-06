@@ -4,25 +4,6 @@ class.InputVerify()
 
 commandList = {lshift = "poo", g = "ness", up = "paula", t = "jeff"}
 
-function InputVerify:load()
-end
-
-function InputVerify:close()
-end
-
-function InputVerify:enable()
- print("Módulo INPUT VERIFY iniciado com sucesso")
-end
-
-function InputVerify:disable()
-end
-
-function InputVerify:update(dt)
-end
-
-function InputVerify:draw()
-end
-
 function InputVerify:keypressed(key, isrepeat)
 	if commandList[key] ~= nil then
 		lovelyMoon.keypressed(commandList[key])
