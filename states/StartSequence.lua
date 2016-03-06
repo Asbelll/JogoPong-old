@@ -30,9 +30,3 @@ end
 
 function StartSequence:buttonreleased(key)
 end
-
-function StartSequence:mousepressed(x, y, button)
-end
-
-function StartSequence:mousereleased(x, y, button)
-end
