@@ -17,11 +17,9 @@ function love.load()
 
 	-- Adiciona os game states para uso futuro.
 	addState(StartSequence, "StartSequence")
-	addState(InputVerify, "InputVerify")
 
 	-- Game state inicial
 	enableState("StartSequence")
-	enableState("InputVerify")
 end
 
 function love.update(dt)
@@ -35,13 +33,13 @@ function love.draw()
 end
 
 function love.keypressed(key, isrepeat)
-	lovelyMoon.keypressed(key, isrepeat)
+	InputVerify.keypressed(key, isrepeat)
 	loveframes.keypressed(key, isrepeat)
 
 end
 
 function love.keyreleased(key)
-	lovelyMoon.keyreleased(key)
+	InputVerify.keyreleased(key)
 	loveframes.keyreleased(key)
 end
 
