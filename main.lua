@@ -23,6 +23,7 @@ function love.load()
 end
 
 function love.update(dt)
+	InputVerify:update(dt)
 	lovelyMoon.update(dt)
 	loveframes.update(dt)
 end
