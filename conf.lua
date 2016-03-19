@@ -7,5 +7,5 @@ binser = require "lib/binser"
 
 function love.conf(t)
 	t.version = "0.9.2"
-	t.window.title = "JogoNave"
+	t.window.title = "JogoPong" -- Só sai nome criativo dessa dupla, mds!
 end
