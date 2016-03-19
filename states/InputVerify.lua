@@ -3,15 +3,24 @@
 class.InputVerify()
 
 commandList = {up = "LPaddleUp", down = "LPaddleDown"}
+holdingKeys = {}
 
 function InputVerify:keypressed(key, isrepeat)
 	if commandList[key] ~= nil then
+		holdingKeys[key] = commandList[key]
 		lovelyMoon.keypressed(commandList[key], isrepeat)
 	end
 end
 
 function InputVerify:keyreleased(key)
 	if commandList[key] ~= nil then
+		holdingKeys[key] = nil
 		lovelyMoon.keyreleased(commandList[key])
+	end
+end
+
+function InputVerify:update(key)
+	for key, comando in pairs(holdingKeys) do
+		lovelyMoon.keyhold(comando)
 	end
 end
