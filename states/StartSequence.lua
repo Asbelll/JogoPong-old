@@ -37,7 +37,7 @@ function StartSequence:draw()
 	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, 10, 90, 0, 0, 0 )
 end
 
-function StartSequence:keypressed(key, isrepeat)
+function StartSequence:keyhold(key, isrepeat)
 	if key == "LPaddleUp" then
 		if LPaddle.speed > (LPaddle.speedMax*-1) then
 			LPaddle.speed = LPaddle.speed + -50
