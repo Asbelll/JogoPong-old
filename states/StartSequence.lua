@@ -1,7 +1,8 @@
 -- Criação da tabela
 class.StartSequence()
 
-LPaddle = {x = 50, y = love.graphics.getHeight()/2 - 45, speed = 0, speedMax = 150}
+LPaddle = Paddle(50)
+RPaddle = Paddle(love.graphics.getWidth() - 50)
 
 function StartSequence:load()
 end
@@ -16,25 +17,25 @@ function StartSequence:disable()
 end
 
 function StartSequence:update(dt)
-	LPaddle.y = LPaddle.y + (LPaddle.speed*dt)
-	if LPaddle.y < 0 then
-		LPaddle.y = 0
-		LPaddle.speed = 0
- 	elseif LPaddle.y > (love.graphics.getHeight() - 90) then
-		LPaddle.y = love.graphics.getHeight() - 90
-		LPaddle.speed = 0
-	end
+	LPaddle:mover(dt)
+	RPaddle:mover(dt)
 
 	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - 3.125
+		LPaddle.speed = LPaddle.speed - LPaddle.accel
 	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + 3.125
+		LPaddle.speed = LPaddle.speed + LPaddle.accel
 	end
-	print(LPaddle.speed)
+
+	if RPaddle.speed > 0 then
+		RPaddle.speed = RPaddle.speed - RPaddle.accel
+	elseif LPaddle.speed < 0 then
+		RPaddle.speed = RPaddle.speed + RPaddle.accel
+	end
 end
 
 function StartSequence:draw()
-	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, 10, 90, 0, 0, 0 )
+	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height, 0, 0, 0 )
+	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
 end
 
 function StartSequence:keyhold(key, isrepeat)
@@ -47,6 +48,18 @@ function StartSequence:keyhold(key, isrepeat)
 	if key == "LPaddleDown" then
 		if LPaddle.speed < LPaddle.speedMax then
 			LPaddle.speed = LPaddle.speed + 50
+		end
+	end
+
+	if key == "RPaddleUp" then
+		if RPaddle.speed > (RPaddle.speedMax*-1) then
+			RPaddle.speed = RPaddle.speed + -50
+		end
+	end
+
+	if key == "RPaddleDown" then
+		if RPaddle.speed < RPaddle.speedMax then
+			RPaddle.speed = RPaddle.speed + 50
 		end
 	end
 end
