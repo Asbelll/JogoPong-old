@@ -16,21 +16,21 @@ function StartSequence:disable()
 end
 
 function StartSequence:update(dt)
-	if LPaddle.y >= 0 and LPaddle.y <= (love.graphics.getHeight() - 90) then
-		LPaddle.y = LPaddle.y + (LPaddle.speed*dt)
-	end
-
+	LPaddle.y = LPaddle.y + (LPaddle.speed*dt)
 	if LPaddle.y < 0 then
 		LPaddle.y = 0
-	elseif LPaddle.y > (love.graphics.getHeight() - 90) then
+		LPaddle.speed = 0
+ 	elseif LPaddle.y > (love.graphics.getHeight() - 90) then
 		LPaddle.y = love.graphics.getHeight() - 90
+		LPaddle.speed = 0
 	end
 
 	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - 3,125
+		LPaddle.speed = LPaddle.speed - 3.125
 	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + 3,125
+		LPaddle.speed = LPaddle.speed + 3.125
 	end
+	print(LPaddle.speed)
 end
 
 function StartSequence:draw()
