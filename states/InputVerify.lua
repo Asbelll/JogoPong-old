@@ -2,7 +2,7 @@
 
 class.InputVerify()
 
-commandList = {lshift = "poo", g = "ness", up = "paula", t = "jeff"}
+commandList = {up = "LPaddleUp", down = "LPaddleDown"}
 
 function InputVerify:keypressed(key, isrepeat)
 	if commandList[key] ~= nil then
