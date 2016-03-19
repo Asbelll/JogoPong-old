@@ -1,4 +1,5 @@
 -- Importa os game states.
+require("classes/Paddle")
 require("states/StartSequence")
 require("states/InputVerify")
 
