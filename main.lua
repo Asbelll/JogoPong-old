@@ -1,6 +1,7 @@
 -- Importa os game states.
 require("classes/Ball")
 require("classes/Paddle")
+require("classes/Hit")
 require("states/StartSequence")
 require("states/InputVerify")
 
