@@ -2,7 +2,7 @@
 
 class.InputVerify()
 
-commandList = {w = "LPaddleUp", s = "LPaddleDown", up = "RPaddleUp", down = "RPaddleDown"}
+commandList = {w = "LPaddleUp", s = "LPaddleDown", up = "RPaddleUp", down = "RPaddleDown", r = "Restart"}
 holdingKeys = {}
 
 function InputVerify:keypressed(key, isrepeat)
