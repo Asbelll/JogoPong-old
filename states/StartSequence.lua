@@ -8,9 +8,9 @@ function StartSequence:load()
 	RPaddle = Paddle(love.graphics.getWidth() - 50)
 
 	-- Inicia o ball com posY aleatório
-	ball = Ball(math.random(love.graphics.getHeight() - 10))
+	ball = Ball(math.random(155))
 
-	friction = 3
+	friction = 4.5
 end
 
 function StartSequence:close()
@@ -26,7 +26,7 @@ function StartSequence:update(dt)
 	-- Atualiza hitboxes dos paddles e da bolinha
 	LPaddle.hitbox = Hit:createHitbox(LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height)
 	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
-	ball.hitbox = Hit:createHitbox(ball.x, ball.y, ball.radius, ball.radius*2)
+	ball.hitbox = Hit:createHitbox(ball.x - ball.radius, ball.y - ball.radius, ball.radius*2, ball.radius*2)
 
 	ball = Hit:wallCollision(ball)
 	ball = Hit:paddleCollision(ball, LPaddle)
@@ -36,7 +36,7 @@ function StartSequence:update(dt)
 	RPaddle:mover(dt)
 	ball:mover(dt)
 
-	-- Força de atrito agindo na a velocidade dos paddles
+	-- Força de atrito agindo na velocidade dos paddles
 	if LPaddle.speed > 0 then
 		LPaddle.speed = LPaddle.speed - friction
 	elseif LPaddle.speed < 0 then
@@ -82,7 +82,7 @@ function StartSequence:keyhold(key, isrepeat)
 	end
 
 	if key == "Restart" then
-		ball:_init(love.graphics.getHeight()/2 - 10)
+		ball:_init(love.graphics.getHeight()/2 - 20)
 	end
 end
 
