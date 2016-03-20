@@ -80,6 +80,10 @@ function StartSequence:keyhold(key, isrepeat)
 			RPaddle.speed = RPaddle.speed + RPaddle.accel
 		end
 	end
+
+	if key == "Restart" then
+		ball:_init(love.graphics.getHeight()/2 - 10)
+	end
 end
 
 function StartSequence:keyreleased(key)
