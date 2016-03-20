@@ -1,13 +1,16 @@
 -- Criação da tabela
 class.StartSequence()
 
-LPaddle = Paddle(50)
-RPaddle = Paddle(love.graphics.getWidth() - 50)
-ball = Ball(love.graphics.getWidth()/2)
-
-friction = 3
-
 function StartSequence:load()
+	math.randomseed(os.time())
+	-- Inicia os paddles
+	LPaddle = Paddle(50)
+	RPaddle = Paddle(love.graphics.getWidth() - 50)
+
+	-- Inicia o ball com posY aleatório
+	ball = Ball(math.random(love.graphics.getHeight() - 10))
+
+	friction = 3
 end
 
 function StartSequence:close()
@@ -20,9 +23,15 @@ function StartSequence:disable()
 end
 
 function StartSequence:update(dt)
+	-- Atualiza hitboxes dos paddles e da bolinha
+	LPaddle.hitbox = Hit:createHitbox(LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height)
+	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
+	ball.hitbox = Hit:createHitbox(ball.x, ball.y, ball.radius, ball.radius)
+
 	LPaddle:mover(dt)
 	RPaddle:mover(dt)
 
+	-- Força de atrito agindo na a velocidade dos paddles
 	if LPaddle.speed > 0 then
 		LPaddle.speed = LPaddle.speed - friction
 	elseif LPaddle.speed < 0 then
