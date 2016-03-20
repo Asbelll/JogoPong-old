@@ -4,8 +4,8 @@ function Paddle:_init(x)
 	self.x = x
 	self.y = love.graphics.getHeight()/2 - 45
 	self.speed = 0
-	self.speedMax = 150
-	self.accel = 3.125
+	self.speedMax = 1500
+	self.accel = 9
 	self.width = 10
 	self.height = 90
 end
