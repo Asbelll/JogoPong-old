@@ -3,6 +3,7 @@ class.StartSequence()
 
 LPaddle = Paddle(50)
 RPaddle = Paddle(love.graphics.getWidth() - 50)
+ball = Ball(love.graphics.getWidth()/2)
 
 friction = 3
 
@@ -38,6 +39,7 @@ end
 function StartSequence:draw()
 	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height, 0, 0, 0 )
 	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
+	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)
 end
 
 function StartSequence:keyhold(key, isrepeat)
