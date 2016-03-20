@@ -2,7 +2,7 @@ class.Ball()
 
 function Ball:_init(speedY)
 	self.x = love.graphics.getWidth()/2
-	self.y = love.graphics.getWidth()/2
+	self.y = love.graphics.getHeight()/2
 	self.speedX = 250
 	self.speedY = speedY
 	self.radius = 10
