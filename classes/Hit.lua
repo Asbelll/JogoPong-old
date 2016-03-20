@@ -1,11 +1,5 @@
 class.Hit()
 
---[[
-[22:53:22] Matheus: Yf = (velocidadeDoPaddle + [PP] + Y)
-[22:53:43 | Edited 23:00:08] Matheus: Xf = X - (|Yf| - |Y|)
-[22:54:34] Matheus: Limitar velocidade mínima de X
-]]--
-
 function Hit:createHitbox(posX, posY, width, height)
 	return {
 		x = posX,
@@ -34,8 +28,8 @@ function Hit:wallCollision(ball)
 	if (ball.y <= 0) then
 		ball.y = 0
 		ball.speedY = ball.speedY * -1
-	elseif (ball.y + ball.radius*2 >= love.graphics.getHeight()) then
-	    ball.y = love.graphics.getHeight() - ball.radius*2
+	elseif (ball.y + ball.radius >= love.graphics.getHeight()) then
+	    ball.y = love.graphics.getHeight() - ball.radius
 	    ball.speedY = ball.speedY * -1
 	end
 
@@ -46,7 +40,7 @@ function Hit:paddleCollision(ball, paddle)
 	local PP = self:checkCollision(ball.hitbox, paddle.hitbox)
 
 	if (PP) then
-		local speedYF = (paddle.speed + PP * 30 + ball.speedY)
+		local speedYF = (paddle.speed/2 + PP * 30 + ball.speedY)
 		ball.speedX = ball.speedX - (math.abs(speedYF) - math.abs(ball.speedY))
 		ball.speedY = speedYF
 
@@ -61,10 +55,10 @@ function Hit:paddleCollision(ball, paddle)
 		end
 
 		if (ball.direct == 1) then
-			ball.x = paddle.x - ball.radius*2 - 1
+			ball.x = paddle.x - ball.radius
 			ball.direct = 2
 		else
-			ball.x = paddle.x + paddle.width + 1
+			ball.x = paddle.x + paddle.width + ball.radius
 			ball.direct = 1
 		end
 	end
