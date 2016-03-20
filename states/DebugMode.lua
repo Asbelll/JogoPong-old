@@ -11,6 +11,8 @@ function DebugMode:load()
 	fpsGraph = require "lib/FPSGraph"
 
 	-- Cria gráficos informativos
+	velXInfo = fpsGraph.createGraph(0, 60)
+	velYInfo = fpsGraph.createGraph(0, 90)
 	fpsInfo = fpsGraph.createGraph()
 	memoryInfo = fpsGraph.createGraph(0, 30)
 
@@ -37,6 +39,8 @@ function DebugMode:update(dt)
 
 	fpsGraph.updateFPS(fpsInfo, dt)
 	fpsGraph.updateMem(memoryInfo, dt)
+	fpsGraph.updateGraph(velXInfo, ball.speedX, "velocidade X: "..ball.speedX, dt)
+	fpsGraph.updateGraph(velYInfo, math.abs(ball.speedY), "velocidade Y: "..ball.speedY, dt)
 end
 
 function DebugMode:draw()
@@ -44,6 +48,10 @@ function DebugMode:draw()
 	fpsGraph.drawGraphs({fpsInfo})
 	love.graphics.setColor(10, 200, 255, 255)
 	fpsGraph.drawGraphs({memoryInfo})
+	love.graphics.setColor(10, 10, 255, 255)
+	fpsGraph.drawGraphs({velXInfo})
+	love.graphics.setColor(200, 10, 255, 255)
+	fpsGraph.drawGraphs({velYInfo})
 end
 
 function DebugMode:keypressed(key, isrepeat)
