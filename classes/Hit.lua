@@ -21,7 +21,8 @@ function Hit:checkCollision(hitbox1, hitbox2)
 	if 	((hitbox1.x <= hitbox2.xf and hitbox1.x >= hitbox2.x) or (hitbox1.xf <= hitbox2.xf and hitbox1.xf >= hitbox2.x)) and ((hitbox1.y <= hitbox2.yf and hitbox1.y >= hitbox2.y) or (hitbox1.yf <= hitbox2.yf and hitbox1.yf >= hitbox2.y)) then
 
 		-- Verifica em que altura do hitbox2 houve a colisão
-		pHeight = ((hitbox1.yc - hitbox2.y)/100)-50
+		pHeight = ((hitbox1.yc - hitbox2.y)/10)-5
+		print(pHeight)
 		return pHeight
 
 	else
@@ -45,13 +46,25 @@ function Hit:paddleCollision(ball, paddle)
 	local PP = self:checkCollision(ball.hitbox, paddle.hitbox)
 
 	if (PP) then
-		local speedYF = (paddle.speed + PP + ball.speedY)
+		local speedYF = (paddle.speed + PP * 30 + ball.speedY)
 		ball.speedX = ball.speedX - (math.abs(speedYF) - math.abs(ball.speedY))
 		ball.speedY = speedYF
 
+		if (ball.speedX < 250) then
+			ball.speedX = 250
+		end
+
+		if (ball.speedY > 800) then
+			ball.speedY = 800
+		elseif (ball.speedY < -800) then
+		    ball.speedY = -800
+		end
+
 		if (ball.direct == 1) then
+			ball.x = paddle.x - ball.radius*2 - 1
 			ball.direct = 2
 		else
+			ball.x = paddle.x + paddle.width + 1
 			ball.direct = 1
 		end
 	end
