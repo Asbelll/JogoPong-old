@@ -6,9 +6,23 @@ class.Ball()
 [22:54:34] Matheus: Limitar velocidade mínima de X
 ]]--
 
-function Ball:_init(x)
-	self.x = x
-	self.y = love.graphics.getHeight()/2 - 45
-	self.speed = 0
+math.randomseed(os.time())
+
+function Ball:_init(y)
+	self.x = love.graphics.getWidth()/2
+	self.y = y
+	self.speedX = 250
+	self.speedY = 0
 	self.radius = 10
+	self.direct = math.random(2)
+end
+
+function Ball:mover(dt)
+	if self.direct == 1 then
+		self.x = self.x + (self.speedX*dt)
+	elseif self.direct == 2 then
+		self.x = self.x - (self.speedX*dt)
+	end
+
+		self.y = self.y + (self.speedY*dt)
 end
