@@ -30,6 +30,7 @@ function StartSequence:update(dt)
 
 	LPaddle:mover(dt)
 	RPaddle:mover(dt)
+	ball:mover(dt)
 
 	-- Força de atrito agindo na a velocidade dos paddles
 	if LPaddle.speed > 0 then
