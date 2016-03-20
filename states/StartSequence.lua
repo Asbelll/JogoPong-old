@@ -28,7 +28,7 @@ function StartSequence:update(dt)
 
 	if RPaddle.speed > 0 then
 		RPaddle.speed = RPaddle.speed - RPaddle.accel
-	elseif LPaddle.speed < 0 then
+	elseif RPaddle.speed < 0 then
 		RPaddle.speed = RPaddle.speed + RPaddle.accel
 	end
 end
