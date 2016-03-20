@@ -26,7 +26,11 @@ function StartSequence:update(dt)
 	-- Atualiza hitboxes dos paddles e da bolinha
 	LPaddle.hitbox = Hit:createHitbox(LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height)
 	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
-	ball.hitbox = Hit:createHitbox(ball.x, ball.y, ball.radius, ball.radius)
+	ball.hitbox = Hit:createHitbox(ball.x, ball.y, ball.radius, ball.radius*2)
+
+	ball = Hit:wallCollision(ball)
+	ball = Hit:paddleCollision(ball, LPaddle)
+	ball = Hit:paddleCollision(ball, RPaddle)
 
 	LPaddle:mover(dt)
 	RPaddle:mover(dt)
