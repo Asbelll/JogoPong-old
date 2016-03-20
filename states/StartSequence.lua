@@ -4,6 +4,8 @@ class.StartSequence()
 LPaddle = Paddle(50)
 RPaddle = Paddle(love.graphics.getWidth() - 50)
 
+friction = 3
+
 function StartSequence:load()
 end
 
@@ -21,15 +23,15 @@ function StartSequence:update(dt)
 	RPaddle:mover(dt)
 
 	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - LPaddle.accel
+		LPaddle.speed = LPaddle.speed - friction
 	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + LPaddle.accel
+		LPaddle.speed = LPaddle.speed + friction
 	end
 
 	if RPaddle.speed > 0 then
-		RPaddle.speed = RPaddle.speed - RPaddle.accel
+		RPaddle.speed = RPaddle.speed - friction
 	elseif RPaddle.speed < 0 then
-		RPaddle.speed = RPaddle.speed + RPaddle.accel
+		RPaddle.speed = RPaddle.speed + friction
 	end
 end
 
@@ -41,25 +43,25 @@ end
 function StartSequence:keyhold(key, isrepeat)
 	if key == "LPaddleUp" then
 		if LPaddle.speed > (LPaddle.speedMax*-1) then
-			LPaddle.speed = LPaddle.speed + -50
+			LPaddle.speed = LPaddle.speed + -LPaddle.accel
 		end
 	end
 
 	if key == "LPaddleDown" then
 		if LPaddle.speed < LPaddle.speedMax then
-			LPaddle.speed = LPaddle.speed + 50
+			LPaddle.speed = LPaddle.speed + LPaddle.accel
 		end
 	end
 
 	if key == "RPaddleUp" then
 		if RPaddle.speed > (RPaddle.speedMax*-1) then
-			RPaddle.speed = RPaddle.speed + -50
+			RPaddle.speed = RPaddle.speed + -RPaddle.accel
 		end
 	end
 
 	if key == "RPaddleDown" then
 		if RPaddle.speed < RPaddle.speedMax then
-			RPaddle.speed = RPaddle.speed + 50
+			RPaddle.speed = RPaddle.speed + RPaddle.accel
 		end
 	end
 end
