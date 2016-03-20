@@ -2,6 +2,7 @@
 require("classes/Ball")
 require("classes/Paddle")
 require("classes/Hit")
+require("classes/Score")
 require("states/StartSequence")
 require("states/InputVerify")
 
