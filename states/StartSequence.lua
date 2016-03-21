@@ -4,6 +4,10 @@ class.StartSequence()
 function StartSequence:load()
 	math.randomseed(os.time())
 	score = Score()
+
+	music = love.audio.newSource("pallid underbrush.mp3")
+	music:setVolume(0.6)
+	music:play()
 	-- Inicia os paddles
 	LPaddle = Paddle(50)
 	RPaddle = Paddle(love.graphics.getWidth() - 50)
