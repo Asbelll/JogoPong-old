@@ -56,7 +56,7 @@ function StartSequence:draw()
 	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height, 0, 0, 0 )
 	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
 	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)
-	love.graphics.print("Score:"..score.scoreL.."-"..score.scoreR, love.graphics.getWidth()/2 - 58, 50, 0, 2)
+	love.graphics.print(score.scoreL.." - "..score.scoreR, love.graphics.getWidth()/2 - 56, 50, 0, 4)
 end
 
 function StartSequence:keyhold(key, isrepeat)
