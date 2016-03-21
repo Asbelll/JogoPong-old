@@ -3,6 +3,7 @@ class.Score()
 function Score:_init()
 	self.scoreL = 0
 	self.scoreR = 0
+	self.font = love.graphics.newFont("computer_pixel-7.ttf", 100)
 end
 
 function Score:point(ballx)
