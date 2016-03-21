@@ -87,6 +87,7 @@ function StartSequence:keyhold(key, isrepeat)
 
 	if key == "Restart" then
 		ball:_init(math.random(-155,155))
+		score:_init()
 	end
 end
 
