@@ -18,7 +18,6 @@ function Hit:checkCollision(hitbox1, hitbox2)
 
 		-- Verifica em que altura do hitbox2 houve a colisão
 		pHeight = ((hitbox1.yc - hitbox2.y)/10)-4.5
-		print(pHeight)
 		return pHeight
 
 	else
@@ -27,7 +26,7 @@ function Hit:checkCollision(hitbox1, hitbox2)
 end
 
 function Hit:wallCollision(ball)
-	-- Verifica se a bola passou de qualquer extremidade e muda sua trajetória e a coloca dentro dos límites denovo caso necessário
+	-- Verifica se a bola passou de qualquer extremidade e muda sua trajetória e a coloca dentro dos límites novamente caso necessário
 	if (ball.y <= 0) then
 		ball.y = 0
 		ball.speedY = ball.speedY * -1
@@ -44,7 +43,7 @@ function Hit:paddleCollision(ball, paddle)
 	local PP = self:checkCollision(ball.hitbox, paddle.hitbox)
 
 	if (PP) then
-		-- Faz os calculos de física atribuindo o resultado à variável speedYF (Y ganha uma velocidade equivalente à metade da velocidade do paddle somado ao bônus da parte do paddle)
+		-- Faz os cálculos de física atribuindo o resultado à variável speedYF (Y ganha uma velocidade equivalente à metade da velocidade do paddle somado ao bônus da parte do paddle)
 		local speedYF = (paddle.speed/2 + PP * 30 + ball.speedY)
 		-- O valor em velocidade ganho no SpeedY será retirado do SpeedX para manter a velocidade total
 		-- Se esse valor for negativo, significa que o Y perdeu velocidade, e assim a subtração passará a ser uma adição
