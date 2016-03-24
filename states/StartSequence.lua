@@ -6,8 +6,14 @@ function StartSequence:load()
 	score = Score()
 
 	music = love.audio.newSource("pallid underbrush.mp3")
-	music:setVolume(0.6)
+	music:setVolume(0.4)
 	music:play()
+
+	wallHitSound = love.audio.newSource("sounds/wallHit.ogg")
+	wallHitSound:setVolume(0.6)
+
+	paddleHitSound = love.audio.newSource("sounds/paddleHit.ogg")
+	paddleHitSound:setVolume(0.6)
 	-- Inicia os paddles
 	LPaddle = Paddle(50)
 	RPaddle = Paddle(love.graphics.getWidth() - 50)
@@ -57,6 +63,7 @@ function StartSequence:update(dt)
 end
 
 function StartSequence:draw()
+	love.graphics.rectangle("fill", love.graphics.getWidth()/ 2 - 2.5, 0, 5, love.graphics.getHeight(), 0, 0, 0 )
 	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height, 0, 0, 0 )
 	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
 	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)

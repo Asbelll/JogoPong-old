@@ -30,9 +30,11 @@ function Hit:wallCollision(ball)
 	if (ball.y <= 0) then
 		ball.y = 0
 		ball.speedY = ball.speedY * -1
+		wallHitSound:play()
 	elseif (ball.y + ball.radius >= love.graphics.getHeight()) then
 	    ball.y = love.graphics.getHeight() - ball.radius
 	    ball.speedY = ball.speedY * -1
+	    wallHitSound:play()
 	end
 
 	return ball
@@ -71,6 +73,8 @@ function Hit:paddleCollision(ball, paddle)
 			ball.x = paddle.x + paddle.width + ball.radius
 			ball.direct = 1
 		end
+
+		paddleHitSound:play()
 	end
 
 	return ball
