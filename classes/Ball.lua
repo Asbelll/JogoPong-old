@@ -18,3 +18,7 @@ function Ball:mover(dt)
 
 		self.y = self.y + (self.speedY*dt)
 end
+
+function Ball:draw()
+	love.graphics.circle("fill", self.x, self.y, self.radius, 4)
+end

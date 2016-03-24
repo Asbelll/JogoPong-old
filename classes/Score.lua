@@ -15,3 +15,9 @@ function Score:point(ballx)
 		ball:_init(math.random(-155,155))
 	end
 end
+
+function Score:draw(ballx)
+	love.graphics.setFont(self.font)
+	love.graphics.printf(self.scoreL, love.graphics.getWidth()/2 - 210, 10, 200, "right")
+	love.graphics.printf(self.scoreR, love.graphics.getWidth()/2 + 15, 10, 200, "left")
+end

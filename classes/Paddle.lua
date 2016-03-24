@@ -20,3 +20,8 @@ function Paddle:mover(dt)
 		self.speed = 0
 	end
 end
+
+
+function Paddle:draw(dt)
+	love.graphics.rectangle("fill", self.x, self.y, self.width, self.height, 0, 0, 0 )
+end
