@@ -3,6 +3,8 @@ require("classes/Ball")
 require("classes/Paddle")
 require("classes/Hit")
 require("classes/Score")
+require("classes/PowerUp")
+require("classes/puEnlarge")
 require("states/StartSequence")
 require("states/InputVerify")
 
