@@ -5,6 +5,7 @@ require("classes/Hit")
 require("classes/Score")
 require("classes/PowerUp")
 require("classes/puEnlarge")
+require("classes/PowerUpManager")
 require("states/StartSequence")
 require("states/InputVerify")
 
