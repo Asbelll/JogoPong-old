@@ -51,7 +51,7 @@ function StartSequence:update(dt)
 	RPaddle:mover(dt)
 	ball:mover(dt)
 	score:point(ball.x)
-	powerUpManager:move(dt)
+	powerUpManager:update(dt)
 
 	-- Força de atrito agindo na velocidade dos paddles
 	if LPaddle.speed > 0 then
