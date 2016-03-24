@@ -64,13 +64,14 @@ function StartSequence:update(dt)
 end
 
 function StartSequence:draw()
+	-- Desenha linha central.
 	love.graphics.rectangle("fill", love.graphics.getWidth()/ 2 - 2.5, 0, 5, love.graphics.getHeight(), 0, 0, 0 )
-	love.graphics.rectangle("fill", LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height, 0, 0, 0 )
-	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
-	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)
-	love.graphics.setFont(score.font)
-	love.graphics.printf(score.scoreL, love.graphics.getWidth()/2 - 210, 10, 200, "right")
-	love.graphics.printf(score.scoreR, love.graphics.getWidth()/2 + 15, 10, 200, "left")
+
+	-- Desenha os objetos do jogo.
+	LPaddle:draw()
+	RPaddle:draw()
+	ball:draw()
+	score:draw()
 end
 
 function StartSequence:keyhold(key, isrepeat)
