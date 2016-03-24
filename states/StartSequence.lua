@@ -69,7 +69,7 @@ function StartSequence:draw()
 	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
 	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)
 	love.graphics.setFont(score.font)
-	love.graphics.printf(score.scoreL, love.graphics.getWidth()/2 - 110, 10, 100, "right")
+	love.graphics.printf(score.scoreL, love.graphics.getWidth()/2 - 210, 10, 200, "right")
 	love.graphics.printf(score.scoreR, love.graphics.getWidth()/2 + 15, 10, 200, "left")
 end
 
