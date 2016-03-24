@@ -20,7 +20,6 @@ function Hit:checkCollision(hitbox1, hitbox2)
 
 		-- Verifica em que altura do hitbox2 houve a colisão
 		pHeight = ((hitbox1.yc - hitbox2.y)/10)-(hitbox2.h / 20)
-		print(pHeight)
 		return pHeight
 
 	else
