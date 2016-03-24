@@ -5,7 +5,8 @@ function StartSequence:load()
 	math.randomseed(os.time())
 	score = Score()
 
-	pp = puEnlarge(400, 400)
+	powerUpManager = PowerUpManager()
+	powerUpManager:newPowerUp()
 
 	music = love.audio.newSource("pallid underbrush.mp3")
 	music:setVolume(0.4)
@@ -50,6 +51,7 @@ function StartSequence:update(dt)
 	RPaddle:mover(dt)
 	ball:mover(dt)
 	score:point(ball.x)
+	powerUpManager:move(dt)
 
 	-- Força de atrito agindo na velocidade dos paddles
 	if LPaddle.speed > 0 then
@@ -63,8 +65,6 @@ function StartSequence:update(dt)
 	elseif RPaddle.speed < 0 then
 		RPaddle.speed = RPaddle.speed + friction
 	end
-
-	pp:move(dt)
 end
 
 function StartSequence:draw()
@@ -76,7 +76,7 @@ function StartSequence:draw()
 	RPaddle:draw()
 	ball:draw()
 	score:draw()
-	pp:draw()
+	powerUpManager:draw()
 end
 
 function StartSequence:keyhold(key, isrepeat)
