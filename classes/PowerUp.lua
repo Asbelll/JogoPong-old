@@ -2,7 +2,7 @@ class.PowerUp()
 
 PowerUp.imageDir = "images/powerUp.png"
 
-function PowerUp:_init(x, y)
+function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
 	self.x = 0
 	self.y = 0
