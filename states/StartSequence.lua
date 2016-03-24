@@ -5,6 +5,8 @@ function StartSequence:load()
 	math.randomseed(os.time())
 	score = Score()
 
+	pp = puEnlarge(400, 400)
+
 	music = love.audio.newSource("pallid underbrush.mp3")
 	music:setVolume(0.4)
 	music:setLooping(true)
@@ -61,6 +63,8 @@ function StartSequence:update(dt)
 	elseif RPaddle.speed < 0 then
 		RPaddle.speed = RPaddle.speed + friction
 	end
+
+	pp:move(dt)
 end
 
 function StartSequence:draw()
@@ -72,6 +76,7 @@ function StartSequence:draw()
 	RPaddle:draw()
 	ball:draw()
 	score:draw()
+	pp:draw()
 end
 
 function StartSequence:keyhold(key, isrepeat)
