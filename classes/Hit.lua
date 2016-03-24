@@ -5,6 +5,8 @@ function Hit:createHitbox(posX, posY, width, height)
 	return {
 		x = posX,
 		y = posY,
+		w = width,
+		h = height,
 		xf = posX + width,
 		yf = posY + height,
 		xc = (posX + width/2),
@@ -17,7 +19,8 @@ function Hit:checkCollision(hitbox1, hitbox2)
 	if 	((hitbox1.x <= hitbox2.xf and hitbox1.x >= hitbox2.x) or (hitbox1.xf <= hitbox2.xf and hitbox1.xf >= hitbox2.x)) and ((hitbox1.y <= hitbox2.yf and hitbox1.y >= hitbox2.y) or (hitbox1.yf <= hitbox2.yf and hitbox1.yf >= hitbox2.y)) then
 
 		-- Verifica em que altura do hitbox2 houve a colisão
-		pHeight = ((hitbox1.yc - hitbox2.y)/10)-4.5
+		pHeight = ((hitbox1.yc - hitbox2.y)/10)-(hitbox2.h / 20)
+		print(pHeight)
 		return pHeight
 
 	else
