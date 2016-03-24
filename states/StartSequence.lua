@@ -7,6 +7,7 @@ function StartSequence:load()
 
 	music = love.audio.newSource("pallid underbrush.mp3")
 	music:setVolume(0.4)
+	music:setLooping(true)
 	music:play()
 
 	wallHitSound = love.audio.newSource("sounds/wallHit.ogg")
@@ -68,7 +69,8 @@ function StartSequence:draw()
 	love.graphics.rectangle("fill", RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height, 0, 0, 0 )
 	love.graphics.circle("fill", ball.x, ball.y, ball.radius, 4)
 	love.graphics.setFont(score.font)
-	love.graphics.print(score.scoreL.." "..score.scoreR, love.graphics.getWidth()/2 - 57)
+	love.graphics.printf(score.scoreL, love.graphics.getWidth()/2 - 110, 10, 100, "right")
+	love.graphics.printf(score.scoreR, love.graphics.getWidth()/2 + 15, 10, 200, "left")
 end
 
 function StartSequence:keyhold(key, isrepeat)
