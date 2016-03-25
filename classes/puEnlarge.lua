@@ -1,6 +1,7 @@
 class.puEnlarge(PowerUp)
 
 puEnlarge.imageDir = "images/puEnlarge.png"
+puEnlarge.duration = 20
 
 function puEnlarge:onEnable()
 	self.target.height = 150
