@@ -3,6 +3,7 @@ class.PowerUp()
 PowerUp.imageDir = ""
 PowerUp.duration = 10
 PowerUp.targetType = ""
+PowerUp.enableSound = ""
 
 function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
@@ -15,12 +16,18 @@ function PowerUp:_init()
 	self.enabled = false
 	self.timeLeft = self.duration
 	self.target = RPaddle
+	self.font = love.graphics.newFont(20)
 end
 
 function PowerUp:drawActive()
 	if (self.active) then
 		love.graphics.draw(self.image, self.x, self.y)
 	end
+end
+
+function PowerUp:drawTimeLeft(x, y)
+	love.graphics.setFont(self.font)
+	love.graphics.printf("["..math.floor(self.timeLeft).."]", x, y, 20, "left")
 end
 
 function PowerUp:move(dt)
@@ -58,6 +65,8 @@ function PowerUp:enable()
 		end
 	end
 
+	local enableSound = love.audio.newSource(self.enableSound)
+	enableSound:play()
 	self:onEnable()
 end
 
