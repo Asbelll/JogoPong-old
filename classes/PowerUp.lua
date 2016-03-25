@@ -1,6 +1,6 @@
 class.PowerUp()
 
-PowerUp.imageDir = "images/powerUp.png"
+PowerUp.imageDir = ""
 
 function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
@@ -12,7 +12,8 @@ function PowerUp:_init()
 	self.active = false
 	self.enabled = false
 	self.duration = 10
-	self.timeLeft = 0
+	self.timeLeft = self.duration
+	self.target = RPaddle
 end
 
 function PowerUp:draw()
@@ -41,20 +42,28 @@ end
 function PowerUp:enable()
 	self.enabled = true
 	self.active = false
-	self.onEnable()
+
+	if (ball.direct == 1) then
+		self.target = LPaddle
+	else
+		self.target = RPaddle
+	end
+
+	self:onEnable()
 end
 
 function PowerUp:disable()
 	self.enabled = false
 	self.timeLeft = self.duration
-	self.onDisable()
+
+	self:onDisable()
 end
 
 function PowerUp:updateDuration(dt)
 	self.timeLeft = self.timeLeft - dt
 end
 
-function PowerUp:update()
+function PowerUp:update(dt)
 end
 
 function PowerUp:onEnable()
