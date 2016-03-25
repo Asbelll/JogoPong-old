@@ -2,6 +2,7 @@ class.PowerUp()
 
 PowerUp.imageDir = ""
 PowerUp.duration = 10
+PowerUp.targetType = ""
 
 function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
@@ -16,7 +17,7 @@ function PowerUp:_init()
 	self.target = RPaddle
 end
 
-function PowerUp:draw()
+function PowerUp:drawActive()
 	if (self.active) then
 		love.graphics.draw(self.image, self.x, self.y)
 	end
@@ -43,10 +44,18 @@ function PowerUp:enable()
 	self.enabled = true
 	self.active = false
 
-	if (ball.direct == 1) then
-		self.target = LPaddle
+	if (self.targetType ~= "reverse") then
+		if (ball.xDirect == 1) then
+			self.target = LPaddle
+		else
+			self.target = RPaddle
+		end
 	else
-		self.target = RPaddle
+		if (ball.xDirect == 1) then
+			self.target = RPaddle
+		else
+			self.target = LPaddle
+		end
 	end
 
 	self:onEnable()
@@ -64,6 +73,9 @@ function PowerUp:updateDuration(dt)
 end
 
 function PowerUp:update(dt)
+end
+
+function PowerUp:draw()
 end
 
 function PowerUp:onEnable()
