@@ -14,6 +14,7 @@ function PowerUpManager:draw()
 
 	for key, indicePowerUp in pairs(self.enabled) do
 		self.powerUpList[indicePowerUp]:draw()
+		self.powerUpList[indicePowerUp]:drawTimeLeft(key * 50 + 50, love.graphics.getHeight() - 20)
 	end
 end
 
@@ -25,7 +26,7 @@ function PowerUpManager:update(dt)
 			self.powerUpList[self.active]:move(dt)
 
 			-- Verifica se houve colisão entre a bolinha e o power up.
-			if (Hit:checkCollision(ball.hitbox, self.powerUpList[self.active].hitbox)) then
+			if (Hit:checkCollision(ball.hitbox, self.powerUpList[self.active].hitbox) and self.powerUpList[self.active].active) then
 				self.powerUpList[self.active]:enable()
 				self.enabled[#self.enabled + 1] = self.active
 				self.active = 0
