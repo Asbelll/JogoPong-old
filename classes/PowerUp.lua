@@ -3,7 +3,7 @@ class.PowerUp()
 PowerUp.imageDir = ""
 PowerUp.duration = 10
 PowerUp.targetType = ""
-PowerUp.enableSound = ""
+PowerUp.enableSounds = {}
 
 function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
@@ -65,7 +65,7 @@ function PowerUp:enable()
 		end
 	end
 
-	local enableSound = love.audio.newSource(self.enableSound)
+	local enableSound = love.audio.newSource(self.enableSounds[math.random(1, #self.enableSounds)])
 	enableSound:play()
 	self:onEnable()
 end
