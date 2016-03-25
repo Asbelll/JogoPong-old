@@ -1,5 +1,6 @@
 class.Score()
 
+local scoreSound = love.audio.newSource("sounds/score.ogg")
 function Score:_init()
 	self.scoreL = 0
 	self.scoreR = 0
@@ -10,9 +11,11 @@ function Score:point(ballx)
 	if ballx <= 0 then
 		self.scoreR = self.scoreR + 1
 		ball:_init(math.random(-155,155), ball.color)
+		scoreSound:play()
 	elseif ballx >= love.graphics.getWidth() then
 		self.scoreL = self.scoreL + 1
 		ball:_init(math.random(-155,155), ball.color)
+		scoreSound:play()
 	end
 end
 
