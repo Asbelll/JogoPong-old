@@ -20,7 +20,7 @@ function InputVerify:keyreleased(key)
 end
 
 function InputVerify:update(key)
-	for key, comando in pairs(holdingKeys) do
-		lovelyMoon.keyhold(comando)
+	for key, command in pairs(holdingKeys) do
+		lovelyMoon.keyhold(command)
 	end
 end
