@@ -108,6 +108,10 @@ function StartSequence:keyhold(key, isrepeat)
 		ball:_init(math.random(-155,155))
 		score:_init()
 	end
+
+	if key == "newPowerUp" then
+		powerUpManager:newPowerUp()
+	end
 end
 
 function StartSequence:keyreleased(key)
