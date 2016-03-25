@@ -1,6 +1,6 @@
 class.puEnlarge(PowerUp)
 
-puEnlarge.imageDir = "images/puEnlarge.png"
+puEnlarge.imageDir = "images/powerUps/puEnlarge.png"
 puEnlarge.duration = 20
 
 function puEnlarge:onEnable()
