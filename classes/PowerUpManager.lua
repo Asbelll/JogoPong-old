@@ -27,7 +27,7 @@ function PowerUpManager:update(dt)
 			-- Verifica se houve colisão entre a bolinha e o power up.
 			if (Hit:checkCollision(ball.hitbox, self.powerUpList[self.active].hitbox)) then
 				self.powerUpList[self.active]:enable()
-				self.enabled[#self.enabled] = self.active
+				self.enabled[#self.enabled + 1] = self.active
 				self.active = 0
 			end
 		end
