@@ -2,6 +2,7 @@ class.puMagnet(PowerUp)
 
 puMagnet.imageDir = "images/powerUps/puMagnet.png"
 puMagnet.duration = 15
+puMagnet.enableSound = "sounds/magnet.ogg"
 
 function puMagnet:update(dt)
 	paddleCY = self.target.y + self.target.height/2

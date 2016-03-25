@@ -3,6 +3,8 @@ class.puMessyControls(PowerUp)
 puMessyControls.imageDir = "images/powerUps/puMessyControls.png"
 puMessyControls.duration = 10
 puMessyControls.targetType = "reverse"
+puMessyControls.enableSound = "sounds/messycontrols.ogg"
+
 local keyUp, keyDown
 local target
 

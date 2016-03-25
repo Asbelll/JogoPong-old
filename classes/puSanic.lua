@@ -2,6 +2,8 @@ class.puSanic(PowerUp)
 
 puSanic.imageDir = "images/powerUps/puSanic.png"
 puSanic.duration = 5
+puSanic.enableSound = "sounds/sanic.ogg"
+
 local emitter, pImg, pX, pY, blendMode
 
 function puSanic:onEnable()
