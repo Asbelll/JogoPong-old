@@ -8,7 +8,7 @@ function StartSequence:load()
 	powerUpManager = PowerUpManager()
 	powerUpManager:newPowerUp()
 
-	music = love.audio.newSource("pallid underbrush.mp3")
+	music = love.audio.newSource("music/pallid underbrush.mp3")
 	music:setVolume(0.4)
 	music:setLooping(true)
 	music:play()
@@ -19,11 +19,11 @@ function StartSequence:load()
 	paddleHitSound = love.audio.newSource("sounds/paddleHit.ogg")
 	paddleHitSound:setVolume(0.6)
 	-- Inicia os paddles
-	LPaddle = Paddle(50)
-	RPaddle = Paddle(love.graphics.getWidth() - 50)
+	LPaddle = Paddle(50, "L")
+	RPaddle = Paddle(love.graphics.getWidth() - 50, "R")
 
 	-- Inicia o ball com posY aleatório
-	ball = Ball(math.random(-155,155))
+	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 
 	friction = 4.5
 end
@@ -105,7 +105,7 @@ function StartSequence:keyhold(key, isrepeat)
 	end
 
 	if key == "Restart" then
-		ball:_init(math.random(-155,155))
+		ball:_init(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 		score:_init()
 	end
 
