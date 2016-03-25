@@ -1,7 +1,7 @@
 class.PowerUpManager()
 
 function PowerUpManager:_init()
-	self.powerUpList = {puEnlarge()}
+	self.powerUpList = {puEnlarge(), puSanic(), puMagnet()}
 	self.active = 0
 	self.enabled = {}
 end
