@@ -9,10 +9,10 @@ end
 function Score:point(ballx)
 	if ballx <= 0 then
 		self.scoreR = self.scoreR + 1
-		ball:_init(math.random(-155,155))
+		ball:_init(math.random(-155,155), ball.color)
 	elseif ballx >= love.graphics.getWidth() then
 		self.scoreL = self.scoreL + 1
-		ball:_init(math.random(-155,155))
+		ball:_init(math.random(-155,155), ball.color)
 	end
 end
 
