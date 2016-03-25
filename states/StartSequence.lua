@@ -6,7 +6,6 @@ function StartSequence:load()
 	score = Score()
 
 	powerUpManager = PowerUpManager()
-	powerUpManager:newPowerUp()
 
 	music = love.audio.newSource("music/pallid underbrush.mp3")
 	music:setVolume(0.4)
@@ -26,6 +25,7 @@ function StartSequence:load()
 	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 
 	friction = 4.5
+	nextPowerUp = 30
 end
 
 function StartSequence:close()
@@ -38,6 +38,12 @@ function StartSequence:disable()
 end
 
 function StartSequence:update(dt)
+	if (nextPowerUp <= 0) then
+		nextPowerUp = 30
+		powerUpManager:newPowerUp()
+	else
+		nextPowerUp = nextPowerUp - dt
+	end
 	-- Atualiza hitboxes dos paddles e da bolinha
 	LPaddle.hitbox = Hit:createHitbox(LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height)
 	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
