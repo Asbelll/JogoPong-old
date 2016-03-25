@@ -1,7 +1,7 @@
 class.PowerUpManager()
 
 function PowerUpManager:_init()
-	self.powerUpList = {puEnlarge(), puSanic(), puMagnet()}
+	self.powerUpList = {puEnlarge(), puMagnet(), puMessyControls(), puSanic(), puShorten()}
 	self.active = 0
 	self.enabled = {}
 end
@@ -9,7 +9,11 @@ end
 function PowerUpManager:draw()
 	if (self.active ~= 0) then
 		-- Desenha os power ups ativos
-		self.powerUpList[self.active]:draw()
+		self.powerUpList[self.active]:drawActive()
+	end
+
+	for key, indicePowerUp in pairs(self.enabled) do
+		self.powerUpList[indicePowerUp]:draw()
 	end
 end
 
@@ -31,6 +35,9 @@ function PowerUpManager:update(dt)
 
 	-- Realiza operações em todos os power ups ativados pelos jogadores.
 	for key, indicePowerUp in pairs(self.enabled) do
+		-- Atualiza power ups ainda ativados.
+		self.powerUpList[indicePowerUp]:update(dt)
+
 		-- Atualiza o tempo de duração.
 		self.powerUpList[indicePowerUp]:updateDuration(dt)
 
@@ -39,9 +46,6 @@ function PowerUpManager:update(dt)
 			self.powerUpList[indicePowerUp]:disable()
 			self.enabled[key] = nil
 		end
-
-		-- Atualiza power ups ainda ativados.
-		self.powerUpList[indicePowerUp]:update(dt)
 	end
 end
 
