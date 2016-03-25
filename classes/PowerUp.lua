@@ -1,6 +1,7 @@
 class.PowerUp()
 
 PowerUp.imageDir = ""
+PowerUp.duration = 10
 
 function PowerUp:_init()
 	self.image = love.graphics.newImage(self.imageDir)
@@ -11,7 +12,6 @@ function PowerUp:_init()
 	self.hitbox = {}
 	self.active = false
 	self.enabled = false
-	self.duration = 10
 	self.timeLeft = self.duration
 	self.target = RPaddle
 end
