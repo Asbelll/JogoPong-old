@@ -1,6 +1,6 @@
 class.Paddle()
 
-function Paddle:_init(x)
+function Paddle:_init(x, id)
 	self.x = x
 	self.y = love.graphics.getHeight()/2 - 45
 	self.speed = 0
@@ -8,6 +8,7 @@ function Paddle:_init(x)
 	self.accel = 9
 	self.width = 10
 	self.height = 90
+	self.id = id
 end
 
 function Paddle:mover(dt)
