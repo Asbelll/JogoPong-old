@@ -68,12 +68,12 @@ function Hit:paddleCollision(ball, paddle)
 		end
 
 		-- Coloca a bola na frente do paddle e a redireciona
-		if (ball.direct == 1) then
+		if (ball.xDirect == 1) then
 			ball.x = paddle.x - ball.radius
-			ball.direct = 2
+			ball.xDirect = 2
 		else
 			ball.x = paddle.x + paddle.width + ball.radius
-			ball.direct = 1
+			ball.xDirect = 1
 		end
 
 		paddleHitSound:play()
