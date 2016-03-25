@@ -1,7 +1,7 @@
 class.puMagnet(PowerUp)
 
-puMagnet.imageDir = "images/puMagnet.png"
-puMagnet.duration = 5
+puMagnet.imageDir = "images/powerUps/puMagnet.png"
+puMagnet.duration = 15
 
 function puMagnet:update(dt)
 	paddleCY = self.target.y + self.target.height/2
