@@ -12,7 +12,7 @@ function Game:load()
 	require("classes/puShorten")
 	require("classes/puSanic")
 	require("classes/puMagnet")
-	require("classes/puMessyControls")
+	require("classes/puReverseControls")
 	require("classes/PowerUpManager")
 
 	-- Carrega arquivos.
@@ -33,12 +33,13 @@ function Game:enable()
 	score = Score()
 	powerUpManager = PowerUpManager()
 
-	-- Inicia os paddles.
-	LPaddle = Paddle(50, "L")
-	RPaddle = Paddle(love.graphics.getWidth() - 50, "R")
-
 	-- Inicia o ball branco com posY aleatório.
-	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
+	local branco = {r = 255, g = 255, b = 255, a = 255}
+	ball = Ball(math.random(-155,155), branco)
+
+	-- Inicia os paddles.
+	LPaddle = Paddle(50, "L", branco)
+	RPaddle = Paddle(love.graphics.getWidth() - 50, "R", branco)
 
 	music:setVolume(0.4)
 	music:setLooping(true)
