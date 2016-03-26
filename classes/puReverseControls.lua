@@ -3,7 +3,7 @@ class.puReverseControls(PowerUp)
 puReverseControls.imageDir = "images/powerUps/puReverseControls.png"
 puReverseControls.duration = 10
 puReverseControls.targetType = "reverse"
-puReverseControls.enableSounds = {"sounds/Reversecontrols.ogg"}
+puReverseControls.enableSounds = {"sounds/reversecontrols.ogg"}
 
 local keyUp, keyDown
 local target
