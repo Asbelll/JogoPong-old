@@ -1,17 +1,9 @@
--- Importa os game states.
-require("classes/Ball")
-require("classes/Paddle")
-require("classes/Hit")
-require("classes/Score")
-require("classes/PowerUp")
-require("classes/puEnlarge")
-require("classes/puShorten")
-require("classes/puSanic")
-require("classes/puMagnet")
-require("classes/puMessyControls")
-require("classes/PowerUpManager")
+-- Importa todos os states.
 require("states/StartSequence")
-require("states/InputVerify")
+require("states/Game")
+
+-- Importa módulos.
+require("classes/mInputVerify")
 
 function love.load()
 	-- Verifica os argumentos de inicialização para escolher o modo de execução.
@@ -23,48 +15,37 @@ function love.load()
 			enableState("DebugMode")
 		end
 	end
-	-- Inicia o loveframes
-	loveframes = require("lib.LoveFrames")
 
 	-- Adiciona os game states para uso futuro.
 	addState(StartSequence, "StartSequence")
+	addState(Game, "Game")
 
-	-- Game state inicial
+	-- Game state inicial.
 	enableState("StartSequence")
 end
 
 function love.update(dt)
 	InputVerify:update(dt)
 	lovelyMoon.update(dt)
-	loveframes.update(dt)
 end
 
 function love.draw()
 	lovelyMoon.draw()
-	loveframes.draw()
 end
 
-function love.keypressed(key, isrepeat)
-	InputVerify:keypressed(key, isrepeat)
-	loveframes.keypressed(key, isrepeat)
+function love.keypressed(key)
+	InputVerify:keypressed(key)
 
 end
 
 function love.keyreleased(key)
 	InputVerify:keyreleased(key)
-	loveframes.keyreleased(key)
 end
 
 function love.mousepressed(x, y, button)
 	lovelyMoon.mousepressed(x, y, button)
-	loveframes.mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
 	lovelyMoon.mousereleased(x, y, button)
-	loveframes.mousereleased(x, y, button)
-end
-
-function love.textinput(text)
-	loveframes.textinput(text)
 end

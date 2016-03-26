@@ -1,9 +1,6 @@
--- <Descrição do state>
+-- State ativado quando se inicia o jogo no modo KM.
 
--- Criação da classe
 class.DebugMode()
-
-local comandosAtivos = {"space", "left", "right"}
 
 function DebugMode:load()
 	-- Importa bibliotecas de debug
@@ -11,8 +8,8 @@ function DebugMode:load()
 	fpsGraph = require "lib/FPSGraph"
 
 	-- Cria gráficos informativos
-	velXInfo = fpsGraph.createGraph(0, 60)
-	velYInfo = fpsGraph.createGraph(0, 90)
+	Info1 = fpsGraph.createGraph(0, 60)
+	Info2 = fpsGraph.createGraph(0, 90)
 	fpsInfo = fpsGraph.createGraph()
 	memoryInfo = fpsGraph.createGraph(0, 30)
 
@@ -39,8 +36,6 @@ function DebugMode:update(dt)
 
 	fpsGraph.updateFPS(fpsInfo, dt)
 	fpsGraph.updateMem(memoryInfo, dt)
-	fpsGraph.updateGraph(velXInfo, ball.speedX, "velocidade X: "..ball.speedX, dt)
-	fpsGraph.updateGraph(velYInfo, math.abs(ball.speedY), "velocidade Y: "..ball.speedY, dt)
 end
 
 function DebugMode:draw()
@@ -49,19 +44,7 @@ function DebugMode:draw()
 	love.graphics.setColor(10, 200, 255, 255)
 	fpsGraph.drawGraphs({memoryInfo})
 	love.graphics.setColor(10, 10, 255, 255)
-	fpsGraph.drawGraphs({velXInfo})
+	fpsGraph.drawGraphs({Info1})
 	love.graphics.setColor(200, 10, 255, 255)
-	fpsGraph.drawGraphs({velYInfo})
-end
-
-function DebugMode:keypressed(key, isrepeat)
-end
-
-function DebugMode:keyreleased(key)
-end
-
-function DebugMode:mousepressed(x, y, button)
-end
-
-function DebugMode:mousereleased(x, y, button)
+	fpsGraph.drawGraphs({Info2})
 end

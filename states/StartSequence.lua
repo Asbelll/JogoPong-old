@@ -1,31 +1,7 @@
--- Criação da tabela
+-- State inicial do jogo
 class.StartSequence()
 
 function StartSequence:load()
-	math.randomseed(os.time())
-	score = Score()
-
-	powerUpManager = PowerUpManager()
-
-	music = love.audio.newSource("music/pallid underbrush.mp3")
-	music:setVolume(0.4)
-	music:setLooping(true)
-	music:play()
-
-	wallHitSound = love.audio.newSource("sounds/wallHit.ogg")
-	wallHitSound:setVolume(0.6)
-
-	paddleHitSound = love.audio.newSource("sounds/paddleHit.ogg")
-	paddleHitSound:setVolume(0.6)
-	-- Inicia os paddles
-	LPaddle = Paddle(50, "L")
-	RPaddle = Paddle(love.graphics.getWidth() - 50, "R")
-
-	-- Inicia o ball com posY aleatório
-	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
-
-	friction = 4.5
-	nextPowerUp = 30
 end
 
 function StartSequence:close()
@@ -37,88 +13,14 @@ end
 function StartSequence:disable()
 end
 
-function StartSequence:update(dt)
-	if (nextPowerUp <= 0) then
-		nextPowerUp = 30
-		powerUpManager:newPowerUp()
-	else
-		nextPowerUp = nextPowerUp - dt
-	end
-	-- Atualiza hitboxes dos paddles e da bolinha
-	LPaddle.hitbox = Hit:createHitbox(LPaddle.x, LPaddle.y, LPaddle.width, LPaddle.height)
-	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
-	ball.hitbox = Hit:createHitbox(ball.x - ball.radius, ball.y - ball.radius, ball.radius*2, ball.radius*2)
-
-	ball = Hit:wallCollision(ball)
-	ball = Hit:paddleCollision(ball, LPaddle)
-	ball = Hit:paddleCollision(ball, RPaddle)
-
-	LPaddle:mover(dt)
-	RPaddle:mover(dt)
-	ball:mover(dt)
-	score:point(ball.x)
-	powerUpManager:update(dt)
-
-	-- Força de atrito agindo na velocidade dos paddles
-	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - friction
-	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + friction
-	end
-
-	if RPaddle.speed > 0 then
-		RPaddle.speed = RPaddle.speed - friction
-	elseif RPaddle.speed < 0 then
-		RPaddle.speed = RPaddle.speed + friction
-	end
-end
-
 function StartSequence:draw()
-	-- Desenha linha central.
-	love.graphics.rectangle("fill", love.graphics.getWidth()/ 2 - 2.5, 0, 5, love.graphics.getHeight(), 0, 0, 0 )
-
-	-- Desenha os objetos do jogo.
-	LPaddle:draw()
-	RPaddle:draw()
-	ball:draw()
-	score:draw()
-	powerUpManager:draw()
+	love.graphics.printf("Pressione R para iniciar um novo jogo", love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2, 400, "center")
 end
 
-function StartSequence:keyhold(key, isrepeat)
-	if key == "LPaddleUp" then
-		if LPaddle.speed > (LPaddle.speedMax*-1) then
-			LPaddle.speed = LPaddle.speed + -LPaddle.accel
-		end
-	end
-
-	if key == "LPaddleDown" then
-		if LPaddle.speed < LPaddle.speedMax then
-			LPaddle.speed = LPaddle.speed + LPaddle.accel
-		end
-	end
-
-	if key == "RPaddleUp" then
-		if RPaddle.speed > (RPaddle.speedMax*-1) then
-			RPaddle.speed = RPaddle.speed + -RPaddle.accel
-		end
-	end
-
-	if key == "RPaddleDown" then
-		if RPaddle.speed < RPaddle.speedMax then
-			RPaddle.speed = RPaddle.speed + RPaddle.accel
-		end
-	end
-
+function StartSequence:keypressed(key)
 	if key == "Restart" then
-		ball:_init(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
-		score:_init()
+		-- Game state inicial.
+		enableState("Game")
+		disableState("StartSequence")
 	end
-
-	if key == "newPowerUp" then
-		powerUpManager:newPowerUp()
-	end
-end
-
-function StartSequence:keyreleased(key)
 end

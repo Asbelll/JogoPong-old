@@ -12,7 +12,12 @@ function Ball:_init(speedY, color)
 end
 
 function Ball:mover(dt)
-	-- Move a bolinha nos exos X (de acordo com o xDirect) e Y.
+	-- Verifica se houve colisão com parede ou paddle.
+	self = Hit:wallCollision(self)
+	self = Hit:paddleCollision(self, LPaddle)
+	self = Hit:paddleCollision(self, RPaddle)
+
+	-- Move a bolinha nos eixos X (de acordo com o xDirect) e Y.
 	if self.xDirect == 1 then
 		self.x = self.x + (self.speedX*dt)
 	elseif self.xDirect == 2 then

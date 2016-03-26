@@ -27,10 +27,10 @@ function lovelyMoon.draw()
    end
 end
 
-function lovelyMoon.keypressed(key, isrepeat)
+function lovelyMoon.keypressed(key)
    for index, state in pairs(_slotState.states) do
       if state and state._enabled and state.keypressed then
-         state:keypressed(key, isrepeat)
+         state:keypressed(key)
       end
    end
 end
