@@ -1,6 +1,6 @@
 class.Paddle()
 
-function Paddle:_init(x, id)
+function Paddle:_init(x, id, color)
 	self.x = x
 	self.y = love.graphics.getHeight()/2 - 45
 	self.speed = 0
@@ -8,7 +8,9 @@ function Paddle:_init(x, id)
 	self.accel = 9
 	self.width = 10
 	self.height = 90
-	self.id = id
+	self.id = id -- Valor identificador do paddle.
+	self.color = color
+	self.blendMode = "alpha"
 end
 
 function Paddle:mover(dt)
@@ -24,5 +26,16 @@ end
 
 
 function Paddle:draw(dt)
+	-- Armazena cores e BlendMode atuais.
+	local rD, gD, bD, aD = love.graphics.getColor()
+	local blendD = love.graphics.getBlendMode()
+
+	-- Aplica as cores e BlendMode do objeto.
+	love.graphics.setColor(self.color.r, self.color.g, self.color.b, self.color.a)
+	love.graphics.setBlendMode(self.blendMode)
 	love.graphics.rectangle("fill", self.x, self.y, self.width, self.height, 0, 0, 0 )
+
+	-- Retorna a cor e BlendMode aos valores anteriores.
+	love.graphics.setColor(rD, gD, bD, aD)
+	love.graphics.setBlendMode(blendD)
 end
