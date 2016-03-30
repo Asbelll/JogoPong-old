@@ -89,8 +89,10 @@ function Game:update(dt)
 	end
 
 	-- Utiliza Info1 e Info2 para mostrar X e Y da bolinha.
-	fpsGraph.updateGraph(Info1, ball.speedX, "velocidade X: "..ball.speedX, dt)
-	fpsGraph.updateGraph(Info2, math.abs(ball.speedY), "velocidade Y: "..ball.speedY, dt)
+	if (isStateEnabled('DebugMode')) then
+		fpsGraph.updateGraph(Info1, ball.speedX, "velocidade X: "..ball.speedX, dt)
+		fpsGraph.updateGraph(Info2, math.abs(ball.speedY), "velocidade Y: "..ball.speedY, dt)
+	end
 end
 
 function Game:draw()
