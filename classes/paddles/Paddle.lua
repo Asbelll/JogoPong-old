@@ -1,12 +1,15 @@
 class.Paddle()
 
 -- Propriedades padrões
+Paddle.id = "Paddle" -- Valor identificador do paddle.
+Paddle.nome = "--"
 Paddle.height = 90
 Paddle.accel = 9
 Paddle.speedMax = 1500
 Paddle.strength = 0
 Paddle.friction = 4.5
-Paddle.id = "Paddle" -- Valor identificador do paddle.
+Paddle.skill = Skill()
+Paddle.energyMeter = Meter()
 Paddle.color = {r = 255, g = 255, b = 255, a = 255}
 Paddle.blendMode = "alpha"
 
@@ -31,6 +34,9 @@ function Paddle:move(dt)
 	end
 end
 
+function Paddle:update(dt)
+
+end
 
 function Paddle:draw(dt)
 	-- Armazena cores e BlendMode atuais.
@@ -85,4 +91,5 @@ end
 function Paddle:playHitSound()
 	local soundKey = math.random(1, #self.sound.hit)
 	self.sound.hit[soundKey]:play()
+	pretty.dump(self.sound.hit)
 end
