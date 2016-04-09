@@ -11,7 +11,7 @@ function Ball:_init(speedY, color)
 	self.blendMode = "alpha"
 end
 
-function Ball:mover(dt)
+function Ball:move(dt)
 	-- Verifica se houve colisão com parede ou paddle.
 	self = Hit:wallCollision(self)
 	self = Hit:paddleCollision(self, LPaddle)
