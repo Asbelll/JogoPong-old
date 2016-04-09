@@ -3,12 +3,19 @@ class.Game()
 
 function Game:load()
 	-- Carrega classes necessárias.
+	-- Energy Meters --
+	require("classes/skills/Meter")
+	require("classes/skills/CoolGirlMeter")
+
+	-- Skill --
+	require("classes/skills/Skill")
+	require("classes/skills/CoolGirlSkill")
+
 	-- Paddles --
 	require("classes/paddles/Paddle")
 	require("classes/paddles/CoolGirl")
 
 	-- Outros --
-
 	require("classes/Ball")
 	require("classes/Hit")
 	require("classes/Score")
