@@ -91,5 +91,4 @@ end
 function Paddle:playHitSound()
 	local soundKey = math.random(1, #self.sound.hit)
 	self.sound.hit[soundKey]:play()
-	pretty.dump(self.sound.hit)
 end
