@@ -1,10 +1,16 @@
 _slotState = { states = {} }
 
-function addState(class, id)
+function addState(class, id, key)
    class._enabled = false
    class._id = id
    class:load()
-   table.insert(_slotState.states, class)
+
+   if (key ~= nil and _slotState.states[key] == nil) then
+      _slotState.states[key] = class
+   else
+      table.insert(_slotState.states, class)
+   end
+
    return state
 end
 
