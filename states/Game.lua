@@ -2,6 +2,7 @@
 class.Game()
 
 function Game:load()
+	whale = love.graphics.newImage("back8.png")
 	-- Carrega classes necessárias.
 	-- Energy Meters --
 	require("classes/skills/Meter")
@@ -14,6 +15,7 @@ function Game:load()
 	-- Paddles --
 	require("classes/paddles/Paddle")
 	require("classes/paddles/CoolGirl")
+	require("classes/paddles/MrBig")
 
 	-- Outros --
 	require("classes/Ball")
@@ -50,7 +52,7 @@ function Game:enable()
 	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 
 	-- Inicia os paddles.
-	LPaddle = Paddle(50, "L")
+	LPaddle = MrBig(50, "L")
 	RPaddle = CoolGirl(love.graphics.getWidth() - 50, "R")
 
 	music:setVolume(0.4)
@@ -106,6 +108,7 @@ function Game:update(dt)
 end
 
 function Game:draw()
+	love.graphics.draw(whale, 0, 0, 0, 1, 1)
 	-- Desenha linha central.
 	love.graphics.rectangle("fill", love.graphics.getWidth()/ 2 - 2.5, 0, 5, love.graphics.getHeight(), 0, 0, 0 )
 
