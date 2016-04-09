@@ -11,7 +11,7 @@ function love.load()
 		if (arg[l] == "-KelverMode") then
 			-- Adiciona e ativa o DebugMode.
 			require("states/DebugMode")
-			addState(DebugMode, "DebugMode")
+			addState(DebugMode, "DebugMode", 10)
 			enableState("DebugMode")
 		end
 	end
