@@ -3,10 +3,17 @@ class.Game()
 
 function Game:load()
 	-- Carrega classes necessárias.
+	-- Paddles --
+	require("classes/paddles/Paddle")
+	require("classes/paddles/CoolGirl")
+
+	-- Outros --
+
 	require("classes/Ball")
-	require("classes/Paddle")
 	require("classes/Hit")
 	require("classes/Score")
+
+	-- Power ups --
 	require("classes/PowerUp")
 	require("classes/puEnlarge")
 	require("classes/puShorten")
@@ -18,12 +25,11 @@ function Game:load()
 	-- Carrega arquivos.
 	music = love.audio.newSource("music/pallid underbrush.mp3")
 	wallHitSound = love.audio.newSource("sounds/wallHit.ogg")
-	paddleHitSound = love.audio.newSource("sounds/paddleHit.ogg")
 end
 
 function Game:close()
 	-- Remove arquivos da memória.
-	music, wallHitSound, paddleHitSoundscore, powerUpManager, LPaddle, RPaddle, ball, friction, nextPowerUp = nil
+	music, wallHitSound, powerUpManager, LPaddle, RPaddle, ball, friction, nextPowerUp = nil
 end
 
 function Game:enable()
@@ -34,21 +40,18 @@ function Game:enable()
 	powerUpManager = PowerUpManager()
 
 	-- Inicia o ball branco com posY aleatório.
-	local branco = {r = 255, g = 255, b = 255, a = 255}
-	ball = Ball(math.random(-155,155), branco)
+	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 
 	-- Inicia os paddles.
-	LPaddle = Paddle(50, "L", branco)
-	RPaddle = Paddle(love.graphics.getWidth() - 50, "R", branco)
+	LPaddle = Paddle(50, "L")
+	RPaddle = CoolGirl(love.graphics.getWidth() - 50, "R")
 
 	music:setVolume(0.4)
 	music:setLooping(true)
 	music:play()
 
 	wallHitSound:setVolume(0.6)
-	paddleHitSound:setVolume(0.6)
 
-	friction = 4.5 -- Força de atrito.
 	nextPowerUp = 15 -- Tempo inicial para chamada de um power up.
 end
 
@@ -61,9 +64,9 @@ function Game:update(dt)
 	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
 	ball.hitbox = Hit:createHitbox(ball.x - ball.radius, ball.y - ball.radius, ball.radius*2, ball.radius*2)
 
-	LPaddle:mover(dt)
-	RPaddle:mover(dt)
-	ball:mover(dt)
+	LPaddle:move(dt)
+	RPaddle:move(dt)
+	ball:move(dt)
 	score:point(ball.x)
 	powerUpManager:update(dt)
 
@@ -77,15 +80,15 @@ function Game:update(dt)
 
 	-- Força de atrito agindo na velocidade dos paddles.
 	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - friction
+		LPaddle.speed = LPaddle.speed - LPaddle.friction
 	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + friction
+		LPaddle.speed = LPaddle.speed + LPaddle.friction
 	end
 
 	if RPaddle.speed > 0 then
-		RPaddle.speed = RPaddle.speed - friction
+		RPaddle.speed = RPaddle.speed - RPaddle.friction
 	elseif RPaddle.speed < 0 then
-		RPaddle.speed = RPaddle.speed + friction
+		RPaddle.speed = RPaddle.speed + RPaddle.friction
 	end
 
 	-- Utiliza Info1 e Info2 para mostrar X e Y da bolinha.
