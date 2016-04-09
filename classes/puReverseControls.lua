@@ -9,7 +9,7 @@ local keyUp, keyDown
 local target
 
 function puReverseControls:onEnable()
-	target = self.target.id
+	target = self.target.side
 
 	for key, command in pairs(commandList) do
 		if (command == target.."PaddleDown") then
