@@ -1,19 +1,26 @@
 class.Paddle()
 
-function Paddle:_init(x, id, color)
+-- Propriedades padrões
+Paddle.height = 90
+Paddle.accel = 9
+Paddle.speedMax = 1500
+Paddle.strength = 0
+Paddle.friction = 4.5
+Paddle.id = "Paddle" -- Valor identificador do paddle.
+Paddle.color = {r = 255, g = 255, b = 255, a = 255}
+Paddle.blendMode = "alpha"
+
+function Paddle:_init(x, side)
 	self.x = x
-	self.y = love.graphics.getHeight()/2 - 45
-	self.speed = 0
-	self.speedMax = 1500
-	self.accel = 9
+	self.y = love.graphics.getHeight()/2 - self.height/2
+	self.side = side
 	self.width = 10
-	self.height = 90
-	self.id = id -- Valor identificador do paddle.
-	self.color = color
-	self.blendMode = "alpha"
+	self.speed = 0
+	self.sound = {}
+	self.sound.hit = self:loadSounds()
 end
 
-function Paddle:mover(dt)
+function Paddle:move(dt)
 	self.y = self.y + (self.speed*dt)
 	if self.y < 0 then
 		self.y = 0
@@ -38,4 +45,44 @@ function Paddle:draw(dt)
 	-- Retorna a cor e BlendMode aos valores anteriores.
 	love.graphics.setColor(rD, gD, bD, aD)
 	love.graphics.setBlendMode(blendD)
+end
+
+function Paddle:loadSounds()
+	local sounds = {} -- Lista de sons.
+	local dir = "sounds/paddleHit/" -- Diretório dos sons de hits.
+	local filePrefix = self.id -- Prefixo dos arquivos de aúdio.
+	local fileDir = dir .. filePrefix .. "_hit.mp3" -- Diretório do arquivo a ser verificado.
+	local file = io.open("../../" .. fileDir)
+
+	-- Usa o prefixo padrão caso nenhum arquivo seja encontrado utilizando o id do paddle.
+	if (file == nil) then
+		filePrefix = "default"
+	end
+
+	-- Adiciona o audio sem numeração à lista.
+	sounds[#sounds + 1] = love.audio.newSource(dir .. filePrefix .. "_hit.mp3")
+	sounds[#sounds]:setVolume(0.6)
+
+	-- Passa a procurar por arquivos com numeração.
+	local fileNumber = 2
+	fileDir = dir .. filePrefix .. "_hit" .. fileNumber .. ".mp3"
+
+	file = io.open("../../" .. fileDir)
+	-- Enquanto existir arquivos com os nomes utilizados, a lista de áudios será atualizada.
+	while (file ~= nil) do
+		-- Adiciona áudio com numeração à lista.
+		sounds[#sounds + 1] = love.audio.newSource(fileDir)
+		sounds[#sounds]:setVolume(0.6)
+
+		fileNumber = fileNumber + 1
+		fileDir = dir .. filePrefix .. "_hit" .. fileNumber .. ".mp3"
+		file = io.open("../../" .. fileDir)
+	end
+
+	return sounds
+end
+
+function Paddle:playHitSound()
+	local soundKey = math.random(1, #self.sound.hit)
+	self.sound.hit[soundKey]:play()
 end
