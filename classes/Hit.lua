@@ -78,7 +78,7 @@ function Hit:paddleCollision(ball, paddle)
 			ball.xDirect = 1
 		end
 
-		paddleHitSound:play()
+		paddle:playHitSound()
 	end
 
 	return ball
