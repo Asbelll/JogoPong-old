@@ -2,7 +2,7 @@
 class.Game()
 
 function Game:load()
-	background = love.graphics.newImage("back8.png") -- Vulgo whale
+	background = love.graphics.newImage("back8.png")
 	-- Carrega classes necessárias.
 	-- Energy Meters --
 	require("classes/skills/Meter")
@@ -79,6 +79,8 @@ function Game:update(dt)
 	RPaddle.hitbox = Hit:createHitbox(RPaddle.x, RPaddle.y, RPaddle.width, RPaddle.height)
 	ball.hitbox = Hit:createHitbox(ball.x - ball.radius, ball.y - ball.radius, ball.radius*2, ball.radius*2)
 
+	LPaddle:update(dt)
+	RPaddle:update(dt)
 	LPaddle:move(dt)
 	RPaddle:move(dt)
 	ball:move(dt)
@@ -114,7 +116,7 @@ function Game:update(dt)
 end
 
 function Game:draw()
-	love.graphics.draw(background, 0, 0, 0, 1, 1)
+	love.graphics.draw(background)
 	-- Desenha linha central.
 	love.graphics.rectangle("fill", love.graphics.getWidth()/ 2 - 2.5, 0, 5, love.graphics.getHeight(), 0, 0, 0 )
 
