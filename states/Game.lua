@@ -7,10 +7,12 @@ function Game:load()
 	-- Energy Meters --
 	require("classes/skills/Meter")
 	require("classes/skills/CoolGirlMeter")
+	require("classes/skills/MrBigMeter")
 
 	-- Skill --
 	require("classes/skills/Skill")
 	require("classes/skills/CoolGirlSkill")
+	require("classes/skills/MrBigSkill")
 
 	-- Paddles --
 	require("classes/paddles/Paddle")
@@ -58,8 +60,8 @@ function Game:enable()
 	ball = Ball(math.random(-155,155), {r = 255, g = 255, b = 255, a = 255})
 
 	-- Inicia os paddles.
-	LPaddle = Leet(50, "L")
-	RPaddle = Isa(love.graphics.getWidth() - 50, "R")
+	LPaddle = MrBig(50, "L")
+	RPaddle = CoolGirl(love.graphics.getWidth() - 50, "R")
 
 	music:setVolume(0.4)
 	music:setLooping(true)
@@ -95,23 +97,11 @@ function Game:update(dt)
 		nextPowerUp = nextPowerUp - dt
 	end
 
-	-- Força de atrito agindo na velocidade dos paddles.
-	if LPaddle.speed > 0 then
-		LPaddle.speed = LPaddle.speed - LPaddle.friction
-	elseif LPaddle.speed < 0 then
-		LPaddle.speed = LPaddle.speed + LPaddle.friction
-	end
-
-	if RPaddle.speed > 0 then
-		RPaddle.speed = RPaddle.speed - RPaddle.friction
-	elseif RPaddle.speed < 0 then
-		RPaddle.speed = RPaddle.speed + RPaddle.friction
-	end
-
-	-- Utiliza Info1 e Info2 para mostrar X e Y da bolinha.
+	-- Utiliza Info1, Info2 e Info3 para mostrar as velocidades da bolinha.
 	if (isStateEnabled('DebugMode')) then
 		fpsGraph.updateGraph(Info1, ball.speedX, "velocidade X: "..ball.speedX, dt)
 		fpsGraph.updateGraph(Info2, math.abs(ball.speedY), "velocidade Y: "..ball.speedY, dt)
+		fpsGraph.updateGraph(Info3, math.abs(ball.speed), "velocidade: "..ball.speed, dt)
 	end
 end
 
