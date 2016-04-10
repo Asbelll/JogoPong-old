@@ -1,11 +1,11 @@
-class.Chrystian(Paddle)
+class.Frank(Paddle)
 
 -- Propriedades padrões
-Chrystian.id = "Chrystian" -- Valor identificador do paddle.
-Chrystian.name = "Chrystian"
-Chrystian.height = 105
-Chrystian.accel = 7.5
-Chrystian.speedMax = 500
-Chrystian.strength = 30
-Chrystian.friction = 5.1
-Chrystian.color = {r = 255, g = 100, b = 0, a = 255}
+Frank.id = "Frank" -- Valor identificador do paddle.
+Frank.name = "Frank"
+Frank.pHeight = 105
+Frank.accel = 7.5
+Frank.speedMax = 500
+Frank.strength = 30
+Frank.friction = 5.1
+Frank.color = {r = 255, g = 100, b = 0, a = 255}

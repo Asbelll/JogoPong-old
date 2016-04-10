@@ -3,7 +3,7 @@ class.Leet(Paddle)
 -- Propriedades padrões
 Leet.id = "Leet" -- Valor identificador do paddle.
 Leet.name = "7H31337"
-Leet.height = 75
+Leet.pHeight = 75
 Leet.accel = 8.1
 Leet.speedMax = 1500
 Leet.strength = -50

@@ -3,7 +3,7 @@ class.MrBig(Paddle)
 -- Propriedades padrões
 MrBig.id = "MrBig" -- Valor identificador do paddle.
 MrBig.name = "Mr. Big"
-MrBig.height = 150
+MrBig.pHeight = 150
 MrBig.accel = 5.4
 MrBig.speedMax = 855
 MrBig.strength = 50

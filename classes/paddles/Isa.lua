@@ -3,7 +3,7 @@ class.Isa(Paddle)
 -- Propriedades padrões
 Isa.id = "Isa" -- Valor identificador do paddle.
 Isa.name = "Cristal"
-Isa.height = 90
+Isa.pHeight = 90
 Isa.accel = 9
 Isa.speedMax = 1000
 Isa.strength = -10

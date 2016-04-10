@@ -3,7 +3,7 @@ class.Paddle()
 -- Propriedades padrões
 Paddle.id = "Paddle" -- Valor identificador do paddle.
 Paddle.nome = "--"
-Paddle.height = 90
+Paddle.pHeight = 90
 Paddle.accel = 9
 Paddle.speedMax = 1500
 Paddle.strength = 0
@@ -14,10 +14,11 @@ Paddle.color = {r = 255, g = 255, b = 255, a = 255}
 Paddle.blendMode = "alpha"
 
 function Paddle:_init(x, side)
+	self.width = 10
+	self.height = self.pHeight -- Height que varia durante o gameplayer
 	self.x = x
 	self.y = love.graphics.getHeight()/2 - self.height/2
 	self.side = side
-	self.width = 10
 	self.speed = 0
 	self.sound = {}
 	self.sound.hit = self:loadSounds()

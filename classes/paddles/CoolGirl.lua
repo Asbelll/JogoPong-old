@@ -3,7 +3,7 @@ class.CoolGirl(Paddle)
 -- Propriedades padrões
 CoolGirl.id = "CoolGirl" -- Valor identificador do paddle.
 CoolGirl.name = "Cool Girl"
-CoolGirl.height = 105
+CoolGirl.pHeight = 105
 CoolGirl.accel = 3
 CoolGirl.speedMax = 600
 CoolGirl.strength = 0
