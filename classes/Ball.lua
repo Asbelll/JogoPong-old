@@ -5,6 +5,7 @@ function Ball:_init(speedY, color)
 	self.y = love.graphics.getHeight()/2
 	self.speedX = 250
 	self.speedY = speedY
+	self.speed = math.sqrt(self.speedX^2 + self.speedY^2)
 	self.radius = 10
 	self.xDirect = math.random(2)
 	self.color = color
@@ -36,6 +37,9 @@ function Ball:move(dt)
 
 	-- Atualiza orientação do objeto.
 	self.angle = math.atan2(deltaY, deltaX)
+
+	-- Atualiza velocidade total da bolinha.
+	self.speed = math.sqrt(self.speedX^2 + self.speedY^2)
 end
 
 function Ball:draw()
