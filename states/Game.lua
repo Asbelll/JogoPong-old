@@ -19,7 +19,7 @@ function Game:load()
 	require("classes/paddles/Leet")
 	require("classes/paddles/Isa")
 	require("classes/paddles/Kitten")
-	require("classes/paddles/Chrystian")
+	require("classes/paddles/Frank")
 	require("classes/paddles/Uber")
 	require("classes/paddles/HackedBig")
 
