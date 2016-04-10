@@ -47,6 +47,11 @@ function Hit:paddleCollision(ball, paddle)
 	local PP = self:checkCollision(ball.hitbox, paddle.hitbox)
 
 	if (PP) then
+		-- Armazena os valores iniciais das velocidades para uso futuro.
+		local speedXI = ball.speedX
+		local speedYI = ball.speedY
+		local speedI = ball.speed
+
 		-- Faz os cálculos de física atribuindo o resultado à variável speedYF.
 		-- Y ganha uma velocidade equivalente à metade da velocidade do paddle somado ao bônus da Parte do Paddle.
 		local speedYF = (paddle.speed/2 + PP * 30 + ball.speedY)
@@ -54,6 +59,7 @@ function Hit:paddleCollision(ball, paddle)
 		-- O valor em velocidade ganho no SpeedY será retirado do SpeedX para manter a velocidade total,
 		-- se esse valor for negativo, significa que o Y perdeu velocidade, e assim a subtração passará a ser uma adição.
 		ball.speedX = ball.speedX - (math.abs(speedYF) - math.abs(ball.speedY))
+
 		-- Atualiza SpeedY.
 		ball.speedY = speedYF
 
@@ -77,6 +83,11 @@ function Hit:paddleCollision(ball, paddle)
 			ball.x = paddle.x + paddle.width + ball.radius
 			ball.xDirect = 1
 		end
+
+		-- Atualiza informação da velocidade total.
+		ball.speed = math.sqrt(ball.speedX^2 + ball.speedY^2)
+
+		paddle.energyMeter:onBPContact(speedI, speedXI, speedYI, ball.speed, ball.speedX, ball.speedY)
 
 		paddle:playHitSound()
 	end
