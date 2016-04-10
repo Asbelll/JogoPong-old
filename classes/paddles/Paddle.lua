@@ -9,16 +9,17 @@ Paddle.speedMax = 1500
 Paddle.strength = 0
 Paddle.friction = 4.5
 Paddle.skill = Skill()
-Paddle.energyMeter = Meter()
+Paddle.energyMeter = Meter(Paddle.id)
 Paddle.color = {r = 255, g = 255, b = 255, a = 255}
 Paddle.blendMode = "alpha"
 
 function Paddle:_init(x, side)
 	self.width = 10
-	self.height = self.pHeight -- Height que varia durante o gameplayer
+	self.height = self.pHeight -- Height que varia durante o gameplay
 	self.x = x
 	self.y = love.graphics.getHeight()/2 - self.height/2
 	self.side = side
+	self.energyMeter.side = side
 	self.speed = 0
 	self.sound = {}
 	self.sound.hit = self:loadSounds()
@@ -36,7 +37,7 @@ function Paddle:move(dt)
 end
 
 function Paddle:update(dt)
-
+	self.energyMeter:update(dt)
 end
 
 function Paddle:draw(dt)
@@ -52,6 +53,8 @@ function Paddle:draw(dt)
 	-- Retorna a cor e BlendMode aos valores anteriores.
 	love.graphics.setColor(rD, gD, bD, aD)
 	love.graphics.setBlendMode(blendD)
+
+	self.energyMeter:draw(dt)
 end
 
 function Paddle:loadSounds()
@@ -92,4 +95,25 @@ end
 function Paddle:playHitSound()
 	local soundKey = math.random(1, #self.sound.hit)
 	self.sound.hit[soundKey]:play()
+end
+
+function Paddle:getScore()
+	if (self.side == "L") then
+		return score.scoreL
+	elseif (side == "R") then
+		return score.scoreR
+	else
+	    return nil
+	end
+end
+
+-- Retorna o objeto pertencente ao lado especificado.
+function Paddle.getPaddleBySide(side)
+	if (side == "L") then
+		return LPaddle
+	elseif (side == "R") then
+		return RPaddle
+	else
+	    return {}
+	end
 end
