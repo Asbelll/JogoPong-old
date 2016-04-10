@@ -8,4 +8,5 @@ Isa.accel = 9
 Isa.speedMax = 1000
 Isa.strength = -10
 Isa.friction = 4.2
+Isa.energyMeter = Meter(Isa.id)
 Isa.color = {r = 255, g = 190, b = 210, a = 255}

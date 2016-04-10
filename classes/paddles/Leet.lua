@@ -9,3 +9,4 @@ Leet.speedMax = 1500
 Leet.strength = -50
 Leet.friction = 4.2
 Leet.color = {r = 50, g = 255, b = 50, a = 255}
+Paddle.energyMeter = Meter(Paddle.id)

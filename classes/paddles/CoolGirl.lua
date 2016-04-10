@@ -9,6 +9,6 @@ CoolGirl.speedMax = 600
 CoolGirl.strength = 0
 CoolGirl.friction = 0.3
 CoolGirl.skill = CoolGirlSkill()
-CoolGirl.energyMeter = CoolGirlMeter()
+CoolGirl.energyMeter = CoolGirlMeter(CoolGirl.id)
 CoolGirl.color = {r = 200, g = 210, b = 255, a = 255}
 CoolGirl.blendMode = "additive"

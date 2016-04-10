@@ -8,4 +8,6 @@ MrBig.accel = 5.4
 MrBig.speedMax = 855
 MrBig.strength = 50
 MrBig.friction = 4.5
+MrBig.energyMeter = Meter(MrBig.id)
+
 MrBig.color = {r = 200, g = 10, b = 255, a = 255}

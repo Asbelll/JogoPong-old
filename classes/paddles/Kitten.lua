@@ -8,3 +8,4 @@ Kitten.accel = 7.5
 Kitten.speedMax = 500
 Kitten.strength = 30
 Kitten.friction = 5.1
+Kitten.energyMeter = Meter(Kitten.id)
