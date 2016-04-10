@@ -34,6 +34,21 @@ function Paddle:move(dt)
 		self.y = love.graphics.getHeight() - self.height
 		self.speed = 0
 	end
+
+	-- Força de atrito agindo na velocidade do paddle.
+	if self.speed > 0 then
+		self.speed = self.speed - self.friction
+
+		if self.speed < 0 then
+			self.speed = 0
+		end
+	elseif self.speed < 0 then
+		self.speed = self.speed + self.friction
+
+		if self.speed > 0 then
+			self.speed = 0
+		end
+	end
 end
 
 function Paddle:update(dt)
