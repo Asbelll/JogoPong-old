@@ -10,6 +10,7 @@ function DebugMode:load()
 	-- Cria gráficos informativos
 	Info1 = fpsGraph.createGraph(0, 60)
 	Info2 = fpsGraph.createGraph(0, 90)
+	Info3 = fpsGraph.createGraph(0, 120)
 	fpsInfo = fpsGraph.createGraph()
 	memoryInfo = fpsGraph.createGraph(0, 30)
 
@@ -47,4 +48,6 @@ function DebugMode:draw()
 	fpsGraph.drawGraphs({Info1})
 	love.graphics.setColor(200, 10, 255, 255)
 	fpsGraph.drawGraphs({Info2})
+	love.graphics.setColor(255, 255, 87, 255)
+	fpsGraph.drawGraphs({Info3})
 end
