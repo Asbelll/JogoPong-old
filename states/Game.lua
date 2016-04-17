@@ -29,6 +29,7 @@ function Game:load()
 	require("classes/Ball")
 	require("classes/Hit")
 	require("classes/Score")
+	require("states/ParticleSystem")
 
 	-- Power ups --
 	require("classes/PowerUp")
@@ -38,6 +39,9 @@ function Game:load()
 	require("classes/puMagnet")
 	require("classes/puReverseControls")
 	require("classes/PowerUpManager")
+
+	addState(ParticleSystem, "ParticleSystem")
+	enableState("ParticleSystem")
 
 	-- Carrega arquivos.
 	music = love.audio.newSource("music/pallid underbrush.mp3")
@@ -65,7 +69,7 @@ function Game:enable()
 
 	music:setVolume(0.4)
 	music:setLooping(true)
-	music:play()
+	--music:play()
 
 	wallHitSound:setVolume(0.6)
 
@@ -151,6 +155,12 @@ function Game:keypressed(key)
 		-- Reinicia State.
 		disableState("Game")
 		enableState("Game")
+	end
+
+	if key == "TakeScreenshot" then
+		-- Reinicia State.
+		local screenshot = love.graphics.newScreenshot();
+		screenshot:encode(os.time() .. '.png');
 	end
 
 	if key == "newPowerUp" then
