@@ -1,7 +1,7 @@
 class.Meter()
 
 Meter.activationMode = "keyPress"
-Meter.energyMax = 236
+Meter.energyMax = 230
 Meter.stocks = 1
 Meter.minCharge = 2
 
