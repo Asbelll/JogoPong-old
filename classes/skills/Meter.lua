@@ -3,17 +3,17 @@ class.Meter()
 Meter.activationMode = "keyPress"
 Meter.energyMax = 230
 Meter.stocks = 1
-Meter.minCharge = 2
+Meter.minCharge = 2 -- Valor mínimo de charge no BPContact.
 
 function Meter:_init(id)
 	self.energy = 0
 	self.id = id
 	self.gfx = {}
+	self.fullStocks = 0
 	self.gfx.bg = love.graphics.newImage("images/meters/" .. id .. "/bg.png")
 	self.gfx.energy = love.graphics.newImage("images/meters/" .. id .. "/energy.png")
 	self.gfx.division = love.graphics.newImage("images/meters/" .. id .. "/division.png")
 	self.gfx.border = love.graphics.newImage("images/meters/" .. id .. "/border.png")
-	self.gfx.aff = "images/meters/" .. id .. "/border.png"
 end
 
 function Meter:update(dt)
@@ -46,6 +46,12 @@ function Meter:charge(value)
 		else
 			self.energy = self.energy + value
 		end
+
+		-- Verifica se algum stock foi enchido por inteiro.
+		if (math.floor(self.energy / (self.energyMax / self.stocks)) > self.fullStocks) then
+			self.fullStocks = math.floor(self.energy / (self.energyMax / self.stocks))
+			self:onStockCharge()
+		end
 	end
 end
 
@@ -59,6 +65,9 @@ end
 function Meter:onMaxCharge()
 	local paddle = Paddle.getPaddleBySide(self.side)
 	paddle.color = {r = 0, g = 255, b = 255, a = 255}
+end
+
+function Meter:onStockCharge()
 end
 
 function Meter:onBPContact(speed, speedX, speedY, speedF, speedXF, speedYF)
