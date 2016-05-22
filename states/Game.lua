@@ -29,7 +29,6 @@ function Game:load()
 	require("classes/Ball")
 	require("classes/Hit")
 	require("classes/Score")
-	require("states/ParticleSystem")
 
 	-- Power ups --
 	require("classes/PowerUp")
@@ -39,9 +38,6 @@ function Game:load()
 	require("classes/puMagnet")
 	require("classes/puReverseControls")
 	require("classes/PowerUpManager")
-
-	addState(ParticleSystem, "ParticleSystem")
-	enableState("ParticleSystem")
 
 	-- Carrega arquivos.
 	music = love.audio.newSource("music/pallid underbrush.mp3")
